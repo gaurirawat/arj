@@ -16,15 +16,15 @@ public class Project {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "managerId")
-    @JsonIgnoreProperties(value={"project", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value={"projects", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee manager;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
     @JsonIgnoreProperties(value={"project", "hibernateLazyInitializer"}, allowSetters = true)
     private List<ProjectPEMapping> projectPEMappings;
 
-    @Column(nullable = false)
-    private String projectId;
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
+    @JsonIgnoreProperties(value={"project", "hibernateLazyInitializer"}, allowSetters = true)
+    private List<MaterialRequest> materialRequests;
 
 }

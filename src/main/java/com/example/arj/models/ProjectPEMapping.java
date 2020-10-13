@@ -21,6 +21,6 @@ public class ProjectPEMapping {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "peId")
     @JsonIgnoreProperties(value={"projectPEMappings", "hibernateLazyInitializer"}, allowSetters = true)
-    private Project pe;
+    private Employee pe;
 
 }

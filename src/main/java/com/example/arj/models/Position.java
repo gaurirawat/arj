@@ -19,8 +19,8 @@ public class Position {
     @JsonIgnoreProperties(value = {"position", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Employee> employees;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "position")
-    @JsonIgnoreProperties(value = {"position", "hibernateLazyInitializer"}, allowSetters = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "levelOfHierarchy")
+    @JsonIgnoreProperties(value = {"levelOfHierarchy", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @Column(nullable = false)

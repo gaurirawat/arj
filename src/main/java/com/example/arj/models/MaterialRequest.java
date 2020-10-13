@@ -19,15 +19,28 @@ public class MaterialRequest {
     @Column(unique=true, nullable = false, updatable = false)
     private int id;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="serviceId")
+    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    private Service service;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="projectId")
+    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    private Project project;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="raisedById")
+    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    private Employee raisedBy;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
     @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
-    List<Transaction> transactions;
+    private List<Transaction> transactions;
 
-    @Column(nullable = false)
-    private String materialRequestId;
-
-    @Column(nullable = false)
-    private StatusEnum status=StatusEnum.PENDING;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
+    @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
+    private List<ItemMRMapping> itemMRMappings;
 
     @Column(nullable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Kolkata")
@@ -42,8 +55,11 @@ public class MaterialRequest {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Kolkata")
     private Date doCompletion;
 
+    @Column(nullable = false)
+    private StatusEnum status=StatusEnum.PENDING;
+
     private String remark;
-    private String area;
+    private String areaFloor;
     private String instruction;
 
     private int currentLevelInHierarchy;

@@ -40,13 +40,11 @@ public class Transaction {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
     @JoinColumn(name="levelOfHierarchy")
     @JsonIgnoreProperties(value= {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
-    private Position position;
+    private Position levelOfHierarchy;
 
     @Column(nullable = false, updatable = false)
     private Timestamp timestamp= new Timestamp(System.currentTimeMillis());
 
     @Column(nullable = false, updatable = false)
     private ActionEnum action;
-
-
 }
