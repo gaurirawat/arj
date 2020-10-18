@@ -12,7 +12,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true, nullable = false, updatable = false)
-    private int id;
+    private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
     @JoinColumn(name="uomId")
@@ -33,4 +33,55 @@ public class Item {
 
     @Column(nullable = false)
     private boolean isActive=true;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UOM getUom() {
+        return uom;
+    }
+
+    public void setUom(UOM uom) {
+        this.uom = uom;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public List<ItemMRMapping> getItemMRMappings() {
+        return itemMRMappings;
+    }
+
+    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
+        this.itemMRMappings = itemMRMappings;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Item() {
+    }
 }

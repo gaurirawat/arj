@@ -14,10 +14,11 @@ import java.util.List;
 @Entity
 @JsonRootName("MaterialRequest")
 public class MaterialRequest {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique=true, nullable = false, updatable = false)
-    private int id;
+    private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="serviceId")
@@ -37,6 +38,10 @@ public class MaterialRequest {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
     @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
+    @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
+    private List<PurchaseOrder> purchaseOrders;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
     @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
@@ -62,6 +67,136 @@ public class MaterialRequest {
     private String areaFloor;
     private String instruction;
 
-    private int currentLevelInHierarchy;
+    private int currentLevelOfHierarchy;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Employee getRaisedBy() {
+        return raisedBy;
+    }
+
+    public void setRaisedBy(Employee raisedBy) {
+        this.raisedBy = raisedBy;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
+
+    public List<ItemMRMapping> getItemMRMappings() {
+        return itemMRMappings;
+    }
+
+    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
+        this.itemMRMappings = itemMRMappings;
+    }
+
+    public Date getDoCreation() {
+        return doCreation;
+    }
+
+    public void setDoCreation(Date doCreation) {
+        this.doCreation = doCreation;
+    }
+
+    public Date getDoCancellation() {
+        return doCancellation;
+    }
+
+    public void setDoCancellation(Date doCancellation) {
+        this.doCancellation = doCancellation;
+    }
+
+    public Date getDoRequiredDelivery() {
+        return doRequiredDelivery;
+    }
+
+    public void setDoRequiredDelivery(Date doRequiredDelivery) {
+        this.doRequiredDelivery = doRequiredDelivery;
+    }
+
+    public Date getDoCompletion() {
+        return doCompletion;
+    }
+
+    public void setDoCompletion(Date doCompletion) {
+        this.doCompletion = doCompletion;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getAreaFloor() {
+        return areaFloor;
+    }
+
+    public void setAreaFloor(String areaFloor) {
+        this.areaFloor = areaFloor;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
+
+    public int getCurrentLevelOfHierarchy() {
+        return currentLevelOfHierarchy;
+    }
+
+    public void setCurrentLevelOfHierarchy(int currentLevelOfHierarchy) {
+        this.currentLevelOfHierarchy = currentLevelOfHierarchy;
+    }
+
+    public MaterialRequest() {
+    }
 }
