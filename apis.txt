@@ -1,0 +1,208 @@
+Note:
+- seperate username and password in another table as it will be fetched everytime we fetch Employee table
+- ProjectPEMapping variable for employee is wrong.
+- take extra care of decomposition of manyToMany relationship
+- in Employee position->positionId
+
+Make, origin,UOM,position,service,item
+
+
+
+
+AddEmployee
+
+    public boolean addEmployee(String name,username,password,Position position){
+    }
+
+
+
+
+
+CreateProject
+
+    - getManagers();
+    - getEngineers();
+
+    - ProjectSerivce:
+
+    public boolean createProjectService(Employee manager,List<Employee> pes,String code,String name){
+        Project project = addProjectService(manager,code,name);
+        #understand how entries will be added to the table if we directly add list into the Project to avoid looping but watch that Employee table can retrive those records
+        foreach(Employee pe:pes){
+            addProjectPEMappingService(project,pe);
+        }
+
+        //#newWay
+        foreach(Employee pe:pes){
+            addProjectPEMappingService(project,pe);
+        }
+    }
+
+    public Project addProjectService(Employee manager,String Code,String name){
+    }
+
+    - ProjectPEService:
+    public boolean addProjectPEService(Project project, Employee engineer){
+    }
+
+
+
+Create MR
+
+    - MISC:
+
+    public List<Project> getProjects(Employee employee){    
+        if(employeeService.isManager(employee)){
+            return employee.getManagerProjects();
+        }
+        else{
+            return employee.getPEProjects();
+
+            List<Project> res;
+            for(ProjectPEMapping projectPEMapping: getProjectPEMappings(Employee employee)){
+                res.add(projectPEMapping.getProject());
+            }
+            return res;
+        }
+    }
+
+    EmployeeService
+    public boolean isManager(Employee employee){
+    }
+
+    Serviceservice
+    public List<Service> getAllServices(){}
+
+    ItemService
+    public List<Item> getAllItemsByService(Service service){}
+
+    MakeService
+    public List<Make> getAllMakes(){}
+
+    OriginService
+    public List<Origin> getAllOrigins(){}
+
+    UOMService
+    public List<UOM> getAllUOMs(){}
+
+    MaterialRequestService:
+    public class ItemModel{
+        Item item;
+        Origin Origin;
+        Make make;
+        int quantity;
+    }
+
+    public boolean createMaterialRequest(Employee employee,Project project,Service service,Date doRequiredDelivery,int areaFloor,String instrunction,List<ItemMRMapping> ItemMRMappings){
+        //doCreation = now()
+        //status = PENDING
+        employee.position.hierarchy = 1+employee.position.hierarchy;
+        MRrequest = addMR(....);
+        for( ItemMRMapping  ItemMRMapping: ItemMRMappings){
+            ItemMRMapping.SetMR(MRrequest);
+            add(ItemMRMapping)
+        }
+        transactionService.addTransaction(employee,MRrequest,employee.position.hierarchy,CREATE);
+    }
+
+
+
+
+MISC:
+
+    addTransaction(Employee,MR,ActionEnum){
+        setLevelHierarchy(emp.position);
+        save(Transaction);
+    };
+
+
+
+APPROVAL/DECLINE:
+
+    public boolean approveRequest(Employee employee,MaterialRequest materialRequest){
+        materialRequest.employee.position.hierarchy +=1;
+        if(employee.position.getCanEnd()){
+            materialRequest.setStatus(Open);
+        }
+        save(materialRequest);
+        transactionService.addTransaction(employee,MRrequest,APPROVE);
+    }
+
+    public boolean declineRequest(Employee employee,MaterialRequest materialRequest,String remark){
+        
+        materialRequest.setStatus(declined);
+        materialRequest.remark = remark;
+        materialRequest.doCancellation = now();
+        save(materialRequest);
+        transactionService.addTransaction(employee,MRrequest,DECLINE);
+    }
+
+
+VIEW:
+
+    public List<MR> viewProcessed(Employee employee){
+
+        if(employee.isPE()){
+            return getMaterialRequestsForPE(employee);
+        }
+        else if(employee.IsPM()){
+            Set<MR> s1 = findAllByProject_managerIdAndHeirarchyGreaterThan(employee,employee.position.hierarchy);
+            s1.addAll(findAllBycurrentLevelInHierarchyAndStatus(employee.position.hierarchy,DECLINE));
+            return Arrays.asList(s1);
+        }
+        else if(employee.isGM() or isDM()){
+            return getMaterialRequestsForGMMD(employee);
+        }
+        else{
+            return findAllByStatus(CLOSE); 
+        }
+    }
+
+
+    public List<MaterialRequest> getMaterialRequestsForPE(Employee employee){
+        materialRequestService.getMaterialRequestsByRaisedBy(employee);
+    }
+
+    public List<MaterialRequest> getMaterialRequestsForGMMD(Employee employee){
+        return repo.findBycurrentLevelInHierarchyGreaterThan(int employee.position.hierarchy);
+    }
+
+    
+    
+    public List<MR> viewPending(Employee employee){
+        if(employee.IsPM()){
+            return findAllBycurrentLevelInHierarchyAndStatusAndProject_managerId(employee.position.hierarchy,PENDING,employee);
+        }
+        else if(employee.isGM() or isDM()){
+            return findBycurrentLevelInHierarchyAndStatus(int employee.position.hierarchy,PENDING);;
+        }
+        else{
+            return findAllByStatus(OPEN);
+        }
+    }
+
+
+
+
+
+VIEW:
+
+   
+
+    PM VIEW
+    public List<MaterialRequest> getMaterialRequestsForPM(Employee employee){
+    //    Select mr.id from MaterialRequest as mr, Project as p, Employee as emp where emp.id={eid} and pos.id = emp.positionId and ((mr.projectId = p.id and p.managerId = {eid} and mr.currentLevelInHierarchy>) or (mr.raisedBy) )
+    }
+
+    PM PENDING
+    public List<MaterialRequest> getPendingMaterialRequestsForPM(Employee employee){
+        return repo.findBycurrentLevelInHierarchyandStatusAndProject_managerId(employee.position.hierarchy,PENDING,employee.id);
+    }
+
+    3
+    
+
+    GM/MD PENDING
+    public List<MaterialRequest> getPendingMaterialRequests(Employee employee){
+        return repo.findBycurrentLevelInHierarchy(int employee.position.hierarchy);
+    }

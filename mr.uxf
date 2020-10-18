@@ -40,7 +40,7 @@
     <panel_attributes>&lt;&lt;Employee&gt;&gt;
 --
 - id: int {PK}
-- position : Position {FK}
+- positionId : Position {FK}
 - name : String
 - username : String
 - password : String
@@ -52,8 +52,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>90</y>
+      <x>1107</x>
+      <y>612</y>
       <w>234</w>
       <h>99</h>
     </coordinates>
@@ -170,7 +170,7 @@
     <panel_attributes>&lt;&lt;Item&gt;&gt;
 --
 - id: int {PK}
-- service : Service {FK}
+- serviceId : Service {FK}
 - uomID : UOM {FK}
 - name : String
 - isActive : boolean
@@ -395,27 +395,14 @@ m2=m</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>675</x>
-      <y>108</y>
-      <w>153</w>
-      <h>36</h>
+      <y>117</y>
+      <w>450</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=m
-m2=1</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1035</x>
-      <y>144</y>
-      <w>90</w>
-      <h>99</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=1
 m2=m</panel_attributes>
-    <additional_attributes>10.0;80.0;80.0;80.0;80.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>410.0;110.0;480.0;110.0;480.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -480,7 +467,7 @@ m2=m</panel_attributes>
       <w>234</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;pos&gt;&gt;
+    <panel_attributes>&lt;&lt;PurchaseOrders&gt;&gt;
 --
 - materialRequestid : MaterialRequest
 - path : String</panel_attributes>
