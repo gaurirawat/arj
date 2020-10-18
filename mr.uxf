@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>369</y>
+      <w>234</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;MaterialRequest&gt;&gt;
+--
+- id: int {PK}
+- raisedBy : Employee {FK}
+- projectId : Project {FK}
+- serviceId : Service {FK}
+- status : StatusEnum
+- remark : String
+- doCreation : Date
+- doCancellation : Date
+- doRequiredDelivery : Date
+- doCompletion : Date
+- areaFloor : String
+- currentLevelInHierarchy : int
+- instruction : String
+
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>90</y>
+      <w>234</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Employee&gt;&gt;
+--
+- id: int {PK}
+- position : Position {FK}
+- name : String
+- username : String
+- password : String
+- isActive : boolean
+-
+- 1 GM,MD,PROC</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>90</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;ProjectPEmapping&gt;&gt;
+--
+- id: int {PK}
+- projectId : Project {FK}
+- peId : Employee {FK}
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>198</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Project&gt;&gt;
+--
+- id: int {PK}
+- managerId : Employee {FK}
+- code : String
+- name : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>603</y>
+      <w>234</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;ItemMRMapping&gt;&gt;
+--
+- id: int {PK}
+- materialRequestId : String {FK}
+- itemId : Item {FK}
+- originId : Orgin {FK}
+- makeId : Make {FK}
+- quantity : int
+
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>360</y>
+      <w>234</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Transaction&gt;&gt;
+--
+- id: int {PK}
+- employeeId : Employee {FK}
+- mrid : MaterialRequest {FK}
+- levelOfHierarchy : Position {FK}
+- action : actionEnum
+- timestamp : Timestamp
+
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>126</y>
+      <w>234</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Position&gt;&gt;
+--
+- id: int {PK}
+- name : String
+- code : String
+- hierarchy : int
+- canCreate : boolean
+- canEnd : boolean
+-
+- R</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>621</y>
+      <w>234</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Service&gt;&gt;
+--
+- id: int {PK}
+- name : String
+- code : String
+
+-
+- CRU</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>720</y>
+      <w>234</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Item&gt;&gt;
+--
+- id: int {PK}
+- service : Service {FK}
+- uomID : UOM {FK}
+- name : String
+- isActive : boolean
+
+-
+- CR</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>774</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;UOM&gt;&gt;
+--
+- id: int {PK}
+- unit : String
+
+-
+- CR</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>765</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Make&gt;&gt;
+--
+- id: int {PK}
+- value : String
+
+-
+- CR</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>477</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Origin&gt;&gt;
+--
+- id: int {PK}
+- value : String
+
+-
+- CR</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1017</x>
+      <y>693</y>
+      <w>63</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1017</x>
+      <y>504</y>
+      <w>63</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>10.0;170.0;50.0;170.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>792</y>
+      <w>144</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>567</y>
+      <w>144</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;70.0;140.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>234</y>
+      <w>162</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>160.0;10.0;90.0;10.0;90.0;240.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>693</y>
+      <w>117</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>110.0;10.0;50.0;10.0;50.0;70.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1107</x>
+      <y>459</y>
+      <w>234</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;ActionEnum&gt;&gt;
+--
+- create
+- approve
+- decline
+- modify
+- close
+- reopen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>675</y>
+      <w>144</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>140.0;90.0;50.0;90.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>531</y>
+      <w>117</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>110.0;10.0;50.0;10.0;50.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>441</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>171</y>
+      <w>126</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>120.0;10.0;60.0;10.0;60.0;260.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>117</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>10.0;50.0;60.0;50.0;60.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>108</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1035</x>
+      <y>144</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>10.0;80.0;80.0;80.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>225</y>
+      <w>36</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>162</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=m
+m2=1</panel_attributes>
+    <additional_attributes>150.0;60.0;60.0;60.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>261</y>
+      <w>36</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1107</x>
+      <y>315</y>
+      <w>234</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;StatusEnum&gt;&gt;
+--
+- pending
+- open
+- close
+- declined</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>333</y>
+      <w>234</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;pos&gt;&gt;
+--
+- materialRequestid : MaterialRequest
+- path : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>666</x>
+      <y>351</y>
+      <w>162</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=m</panel_attributes>
+    <additional_attributes>10.0;180.0;110.0;180.0;110.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+</diagram>
