@@ -25,7 +25,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false, updatable = false)
-    private int id;
+    private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
     @JoinColumn(name="employeeId")
@@ -38,9 +38,9 @@ public class Transaction {
     private MaterialRequest materialRequest;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="levelOfHierarchy")
+    @JoinColumn(name="levelOfHierarchyId")
     @JsonIgnoreProperties(value= {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
-    private Position position;
+    private Position levelOfHierarchy;
 
     @Column(nullable = false, updatable = false)
     private Timestamp timestamp= new Timestamp(System.currentTimeMillis());
@@ -48,5 +48,54 @@ public class Transaction {
     @Column(nullable = false, updatable = false)
     private ActionEnum action;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public MaterialRequest getMaterialRequest() {
+        return materialRequest;
+    }
+
+    public void setMaterialRequest(MaterialRequest materialRequest) {
+        this.materialRequest = materialRequest;
+    }
+
+    public Position getLevelOfHierarchy() {
+        return levelOfHierarchy;
+    }
+
+    public void setLevelOfHierarchy(Position levelOfHierarchy) {
+        this.levelOfHierarchy = levelOfHierarchy;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public ActionEnum getAction() {
+        return action;
+    }
+
+    public void setAction(ActionEnum action) {
+        this.action = action;
+    }
+
+    public Transaction() {
+    }
 }
