@@ -11,7 +11,7 @@ import java.util.List;
 public class Origin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable = false, updatable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "origin")

@@ -10,26 +10,26 @@ import javax.persistence.*;
 public class ItemMRMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable = false, updatable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="materialRequestId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "materialRequestId")
     @JsonIgnoreProperties(value = {"itemMRMappings", "hibernateLazyInitializer"}, allowSetters = true)
     private MaterialRequest materialRequest;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="itemId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "itemId")
     @JsonIgnoreProperties(value = {"itemMRMappings", "hibernateLazyInitializer"}, allowSetters = true)
     private Item item;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="makeId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "makeId")
     @JsonIgnoreProperties(value = {"itemMRMappings", "hibernateLazyInitializer"}, allowSetters = true)
     private Make make;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="originId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "originId")
     @JsonIgnoreProperties(value = {"itemMRMappings", "hibernateLazyInitializer"}, allowSetters = true)
     private Origin origin;
 

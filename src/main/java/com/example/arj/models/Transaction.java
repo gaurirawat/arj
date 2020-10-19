@@ -1,7 +1,6 @@
 //should we use timestamp or date?
 
 
-
 package com.example.arj.models;
 
 import com.example.arj.utils.ActionEnum;
@@ -27,23 +26,23 @@ public class Transaction {
     @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="employeeId")
-    @JsonIgnoreProperties(value={"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "employeeId")
+    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee employee;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name= "materialRequestId")
-    @JsonIgnoreProperties(value= {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @JoinColumn(name = "materialRequestId")
+    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
     private MaterialRequest materialRequest;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="levelOfHierarchyId")
-    @JsonIgnoreProperties(value= {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "levelOfHierarchyId")
+    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
     private Position levelOfHierarchy;
 
     @Column(nullable = false, updatable = false)
-    private Timestamp timestamp= new Timestamp(System.currentTimeMillis());
+    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @Column(nullable = false, updatable = false)
     private ActionEnum action;

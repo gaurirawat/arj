@@ -1,0 +1,9 @@
+Why DAO?
+- controller is to define endpoints of the application
+- service is to handle ugly business logic and seperate it from our endpoints
+- DAO is for accessing data models and do CRUD hence it will decouple business logic and access layer so they can grow independently.
+
+Optional:
+- Is to establish that there can be no value to return and method will make explicit check everytime we use it so to avoid nullPointer exception.
+https://www.baeldung.com/java-optional-return
+https://dzone.com/articles/java-8-optional-how-use-it#:~:text=Optional%20is%20a%20new%20container,ssn)%20%7B%20...%20%7D

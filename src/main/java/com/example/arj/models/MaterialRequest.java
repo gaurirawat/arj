@@ -17,21 +17,21 @@ public class MaterialRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable = false, updatable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="serviceId")
+    @JoinColumn(name = "serviceId")
     @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="projectId")
+    @JoinColumn(name = "projectId")
     @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
     private Project project;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="raisedById")
+    @JoinColumn(name = "raisedById")
     @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee raisedBy;
 
@@ -49,7 +49,7 @@ public class MaterialRequest {
 
     @Column(nullable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Kolkata")
-    private Date doCreation=Date.valueOf(LocalDate.now());
+    private Date doCreation = Date.valueOf(LocalDate.now());
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Kolkata")
     private Date doCancellation;
@@ -61,7 +61,7 @@ public class MaterialRequest {
     private Date doCompletion;
 
     @Column(nullable = false)
-    private StatusEnum status=StatusEnum.PENDING;
+    private StatusEnum status = StatusEnum.PENDING;
 
     private String remark;
     private String areaFloor;

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ProjectPEMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable = false, updatable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
 //    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)

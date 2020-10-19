@@ -16,9 +16,9 @@ public class Employee {
     @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional=false)
-    @JoinColumn(name="positionId")
-    @JsonIgnoreProperties(value={"employees", "hibernateLazyInitializer"}, allowSetters = true)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "positionId")
+    @JsonIgnoreProperties(value = {"employees", "hibernateLazyInitializer"}, allowSetters = true)
     private Position position;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
@@ -26,7 +26,7 @@ public class Employee {
     private List<Transaction> transactions;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "raisedBy")
-    @JsonIgnoreProperties(value={"raisedBy", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"raisedBy", "hibernateLazyInitializer"}, allowSetters = true)
     private List<MaterialRequest> materialRequests;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pe")
@@ -34,11 +34,11 @@ public class Employee {
 //    private List<ProjectPEMapping> projectPEMappings;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "manager")
-    @JsonIgnoreProperties(value={"manager", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"manager", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Project> PMProjects;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pes")
-    @JsonIgnoreProperties(value={"pes", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"pes", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Project> PEProjects;
 
     @Column(nullable = false)
@@ -51,7 +51,7 @@ public class Employee {
     private String password;
 
     @Column(nullable = false)
-    private boolean isActive =true;
+    private boolean isActive = true;
 
     public Integer getId() {
         return id;

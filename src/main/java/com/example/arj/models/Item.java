@@ -11,16 +11,16 @@ import java.util.List;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable = false, updatable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="uomId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "uomId")
     @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
     private UOM uom;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional=false)
-    @JoinColumn(name="serviceId")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "serviceId")
     @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
@@ -32,7 +32,7 @@ public class Item {
     private String name;
 
     @Column(nullable = false)
-    private boolean isActive=true;
+    private boolean isActive = true;
 
     public Integer getId() {
         return id;
