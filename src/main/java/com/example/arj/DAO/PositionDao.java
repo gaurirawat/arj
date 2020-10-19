@@ -1,11 +1,13 @@
 package com.example.arj.DAO;
 
-import com.example.arj.models.Position;
-import com.example.arj.repositories.PositionRepository;
+import com.example.arj.Models.Position;
+import com.example.arj.Repositories.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class PositionDao implements Dao<Position> {
 
     @Autowired
@@ -31,13 +33,18 @@ public class PositionDao implements Dao<Position> {
         return positionRepository.save(position);
     }
 
-    @Override
-    public void delete(Position position) {
-        positionRepository.deleteById(position.getId());
+    public List<Position> findByIsValidIsTrue() {
+        return positionRepository.findByIsValidIsTrue();
     }
 
-    @Override
+    public void delete(Position position) {
+        position.setValid(false);
+        positionRepository.save(position);
+    }
+
     public void delete(Integer id) {
-        positionRepository.deleteById(id);
+        Position position=positionRepository.getOne(id);
+        position.setValid(false);
+        positionRepository.save(position);
     }
 }

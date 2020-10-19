@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ArjApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(ArjApplication.class, args);
     }
 

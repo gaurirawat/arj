@@ -1,11 +1,13 @@
 package com.example.arj.DAO;
 
-import com.example.arj.models.Project;
-import com.example.arj.repositories.ProjectRepository;
+import com.example.arj.Models.Project;
+import com.example.arj.Repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ProjectDao implements Dao<Project> {
 
     @Autowired
@@ -31,13 +33,4 @@ public class ProjectDao implements Dao<Project> {
         return projectRepository.save(project);
     }
 
-    @Override
-    public void delete(Project project) {
-        projectRepository.deleteById(project.getId());
-    }
-
-    @Override
-    public void delete(Integer id) {
-        projectRepository.deleteById(id);
-    }
 }

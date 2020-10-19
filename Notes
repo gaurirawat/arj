@@ -1,6 +1,3 @@
-should we keep transaction's time entry as timestamp or date?
-check ppe to empl mapping
-type of level of hierarchy in transaction has been changed to position. Also check the naming of obj var and table var.
-check naming of obj var and table var of manager in project
-check naming of obj var and table var of pe in projectPEMapping
-open employee and look at mapped value of many to one relations
+item_mr_mapping and purchase order can be deleted.
+account, material request cannot be deleted.
+rest are all soft delete.

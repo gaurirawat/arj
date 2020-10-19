@@ -1,11 +1,13 @@
 package com.example.arj.DAO;
 
-import com.example.arj.models.Service;
-import com.example.arj.repositories.ServiceRepository;
+import com.example.arj.Models.Service;
+import com.example.arj.Repositories.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ServiceDao implements Dao<Service> {
 
     @Autowired
@@ -31,13 +33,18 @@ public class ServiceDao implements Dao<Service> {
         return serviceRepository.save(service);
     }
 
-    @Override
-    public void delete(Service service) {
-        serviceRepository.deleteById(service.getId());
+    public List<Service> findByIsValidIsTrue() {
+        return serviceRepository.findByIsValidIsTrue();
     }
 
-    @Override
+    public void delete(Service service) {
+        service.setValid(false);
+        serviceRepository.save(service);
+    }
+
     public void delete(Integer id) {
-        serviceRepository.deleteById(id);
+        Service service=serviceRepository.getOne(id);
+        service.setValid(false);
+        serviceRepository.save(service);
     }
 }

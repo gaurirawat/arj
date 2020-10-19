@@ -12,7 +12,4 @@ public interface Dao<T> {
 
     T update(T t);
 
-    void delete(T t);
-
-    void delete(Integer id);
 }

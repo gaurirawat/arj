@@ -1,11 +1,13 @@
 package com.example.arj.DAO;
 
-import com.example.arj.models.PurchaseOrder;
-import com.example.arj.repositories.PurchaseOrderRepository;
+import com.example.arj.Models.PurchaseOrder;
+import com.example.arj.Repositories.PurchaseOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class PurchaseOrderDao implements Dao<PurchaseOrder> {
 
     @Autowired
@@ -31,12 +33,10 @@ public class PurchaseOrderDao implements Dao<PurchaseOrder> {
         return purchaseOrderRepository.save(purchaseOrder);
     }
 
-    @Override
     public void delete(PurchaseOrder purchaseOrder) {
         purchaseOrderRepository.deleteById(purchaseOrder.getId());
     }
 
-    @Override
     public void delete(Integer id) {
         purchaseOrderRepository.deleteById(id);
     }
