@@ -37,7 +37,8 @@ public class EmployeeDao implements Dao<Employee> {
         return employeeRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Employee employee) {
+    public void delete(Employee employeeD) {
+        Employee employee= employeeRepository.getOne(employeeD.getId());
         employee.setValid(false);
         employeeRepository.save(employee);
     }

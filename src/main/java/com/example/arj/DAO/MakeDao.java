@@ -36,7 +36,8 @@ public class MakeDao implements Dao<Make> {
         return makeRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Make make) {
+    public void delete(Make makeD) {
+        Make make= makeRepository.getOne(makeD.getId());
         make.setValid(false);
         makeRepository.save(make);
     }

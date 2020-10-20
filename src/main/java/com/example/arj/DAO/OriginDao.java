@@ -36,7 +36,8 @@ public class OriginDao implements Dao<Origin> {
         return originRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Origin origin) {
+    public void delete(Origin originD) {
+        Origin origin= originRepository.getOne(originD.getId());
         origin.setValid(false);
         originRepository.save(origin);
     }

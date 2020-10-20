@@ -37,7 +37,8 @@ public class ServiceDao implements Dao<Service> {
         return serviceRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Service service) {
+    public void delete(Service serviceD) {
+        Service service=serviceRepository.getOne(serviceD.getId());
         service.setValid(false);
         serviceRepository.save(service);
     }

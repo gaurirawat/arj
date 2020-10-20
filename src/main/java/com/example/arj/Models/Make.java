@@ -61,4 +61,14 @@ public class Make {
     public Make(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "Make{" +
+                "id=" + id +
+//                ", itemMRMappings=" + itemMRMappings +
+                ", isValid=" + isValid +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

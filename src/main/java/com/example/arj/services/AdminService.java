@@ -66,7 +66,7 @@ public class AdminService {
 
     public List<UOM> findAllUOMs(){return uomDao.findByIsValidIsTrue();}
 
-    public void updateUOM(List<UOM> addUom, List<UOM> deleteUOM){
+    public void updateUOMs(List<UOM> addUom, List<UOM> deleteUOM){
         for(UOM uom: addUom)
             uomDao.save(uom);
 
@@ -103,14 +103,14 @@ public class AdminService {
         return employeeDao.save(employee);
     }
 
-    public Project createProject(String name, String code, int managerId, List<Integer> peIds){
+    public void createProject(String name, String code, int managerId, List<Integer> peIds){
         Project project=new Project(name, code);
         project.setManager(employeeDao.find(managerId));
         List<Employee> pes=new ArrayList<>();
         for(int peId: peIds)
             pes.add(employeeDao.find(peId));
         project.setPes(pes);
-        return projectDao.save(project);
+        projectDao.save(project);
     }
 
 }

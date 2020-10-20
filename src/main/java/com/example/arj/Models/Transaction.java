@@ -101,4 +101,11 @@ public class Transaction {
 
     public Transaction() {
     }
+
+    public Transaction(ActionEnum action, Employee employee, MaterialRequest materialRequest, Position levelOfHierarchy) {
+        this.employee = employee;
+        this.materialRequest = materialRequest;
+        this.levelOfHierarchy = levelOfHierarchy;
+        this.action = action;
+    }
 }
