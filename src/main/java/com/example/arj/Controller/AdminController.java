@@ -2,7 +2,7 @@ package com.example.arj.Controller;
 
 
 import com.example.arj.Models.*;
-import com.example.arj.services.AdminService;
+import com.example.arj.Services.AdminService;
 import com.example.arj.utils.Wrappers.AdminWrapper;
 import com.example.arj.utils.Wrappers.UpdateWrapper;
 import org.springframework.beans.factory.annotation.*;
