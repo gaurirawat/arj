@@ -37,7 +37,8 @@ public class ItemDao implements Dao<Item> {
         return itemRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Item item) {
+    public void delete(Item itemD) {
+        Item item= itemRepository.getOne(itemD.getId());
         item.setValid(false);
         itemRepository.save(item);
     }

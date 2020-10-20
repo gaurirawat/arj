@@ -2,7 +2,7 @@ package com.example.arj.Controller;
 
 import com.example.arj.DAO.MakeDao;
 import com.example.arj.Models.Make;
-import com.example.arj.services.AdminService;
+import com.example.arj.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

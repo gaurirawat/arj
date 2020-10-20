@@ -29,7 +29,8 @@ public class UOMDao implements Dao<UOM> {
         return uomRepository.findByIsValidIsTrue();
     }
 
-    public void delete(UOM uom){
+    public void delete(UOM uomD){
+        UOM uom=uomRepository.getOne(uomD.getId());
         uom.setValid(false);
         uomRepository.save(uom);
     }

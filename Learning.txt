@@ -10,3 +10,7 @@ Optional:
 
 getOne() vs findById():
 - https://stackoverflow.com/questions/24482117/when-use-getone-and-findone-methods-spring-data-jpa
+
+Passing of data
+https://lankydan.dev/2017/03/11/passing-data-transfer-objects-with-get-in-spring-boot
+https://www.xspdf.com/resolution/50438739.html

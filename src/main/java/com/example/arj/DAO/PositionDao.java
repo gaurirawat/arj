@@ -37,7 +37,8 @@ public class PositionDao implements Dao<Position> {
         return positionRepository.findByIsValidIsTrue();
     }
 
-    public void delete(Position position) {
+    public void delete(Position positionD) {
+        Position position=positionRepository.getOne(positionD.getId());
         position.setValid(false);
         positionRepository.save(position);
     }

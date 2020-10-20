@@ -1,4 +1,4 @@
-package com.example.arj.utils;
+package com.example.arj.Utils;
 
 public enum StatusEnum {
     PENDING,
