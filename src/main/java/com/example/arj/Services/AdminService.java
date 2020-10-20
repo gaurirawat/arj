@@ -34,7 +34,7 @@ public class AdminService {
     @Autowired
     ProjectDao projectDao;
 
-    public List<Position> findAllPositions(){return positionDao.findByIsValidIsTrue();}
+    public List<Position> findAllValidPositions(){return positionDao.findByIsValidIsTrue();}
 
     public void updatePositions(List<Position> addPosition, List<Position> deletePosition) {
         for (Position position : addPosition)
@@ -44,7 +44,7 @@ public class AdminService {
             positionDao.delete(position);
     }
 
-    public List<Make> findAllMakes(){return makeDao.findByIsValidIsTrue();}
+    public List<Make> findAllValidMakes(){return makeDao.findByIsValidIsTrue();}
 
     public void updateMakes(List<Make> addMakes, List<Make> deleteMakes){
         for(Make make: addMakes)
@@ -54,7 +54,7 @@ public class AdminService {
             makeDao.delete(make);
     }
 
-    public List<Origin> findAllOrigins(){return originDao.findByIsValidIsTrue();}
+    public List<Origin> findAllValidOrigins(){return originDao.findByIsValidIsTrue();}
 
     public void updateOrigins(List<Origin> addOrigins, List<Origin> deleteOrigins){
         for(Origin origin: addOrigins)
@@ -64,7 +64,7 @@ public class AdminService {
             originDao.delete(origin);
     }
 
-    public List<UOM> findAllUOMs(){return uomDao.findByIsValidIsTrue();}
+    public List<UOM> findAllValidUOMs(){return uomDao.findByIsValidIsTrue();}
 
     public void updateUOMs(List<UOM> addUom, List<UOM> deleteUOM){
         for(UOM uom: addUom)
@@ -74,7 +74,7 @@ public class AdminService {
             uomDao.delete(uom);
     }
 
-    public List<Item> findAllItems(){return itemDao.findByIsValidIsTrue();}
+    public List<Item> findAllValidItems(){return itemDao.findByIsValidIsTrue();}
 
     public void updateItems(List<Item> addItems, List<Item> deleteItems){
         for(Item item: addItems)
@@ -84,7 +84,7 @@ public class AdminService {
             itemDao.delete(item);
     }
 
-    public List<Service> findAllServices(){return serviceDao.findByIsValidIsTrue();}
+    public List<Service> findAllValidServices(){return serviceDao.findByIsValidIsTrue();}
 
     public void updateServices(List<Service> addServices, List<Service> deleteService){
         for(Service service: addServices)

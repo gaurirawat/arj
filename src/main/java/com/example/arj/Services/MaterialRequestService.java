@@ -72,7 +72,7 @@ public class MaterialRequestService {
         return transactionDao.save(transaction);
     }
 
-    public void approveRequest(Employee employee, int materialRequestId){
+    public void approveMaterialRequest(Employee employee, int materialRequestId){
         MaterialRequest materialRequest=materialRequestDao.find(materialRequestId);
         materialRequest.setCurrentLevelOfHierarchy(materialRequest.getCurrentLevelOfHierarchy()+1);
         if(employee.getPosition().isCanEnd())
@@ -82,7 +82,7 @@ public class MaterialRequestService {
         logTransaction(ActionEnum.APPROVE, employee, materialRequest);
     }
 
-    public void declineRequest(Employee employee, int materialRequestId, String remark){
+    public void declineMaterialRequest(Employee employee, int materialRequestId, String remark){
         MaterialRequest materialRequest= materialRequestDao.find(materialRequestId);
         materialRequest.setStatus(StatusEnum.DECLINED);
         materialRequest.setDoCancellation(Date.valueOf(LocalDate.now()));
@@ -90,5 +90,48 @@ public class MaterialRequestService {
         materialRequestDao.save(materialRequest);
 
         logTransaction(ActionEnum.DECLINE, employee, materialRequest);
+    }
+
+    public List<Project> findAssignedProjects(Employee employee){
+        List<Project> projects;
+        if(isPM(employee))
+            projects= employee.getPMProjects();
+        else
+            projects= employee.getPEProjects();
+
+        for(int i=0;i<projects.size();++i){
+            if(!projects.get(i).isValid()){
+                projects.remove(projects.get(i));
+                --i;
+            }
+        }
+        return projects;
+    }
+
+    public boolean isPM(Employee employee){
+        if(employee.getPosition().getHierarchy()==2)
+            return true;
+        return false;
+    }
+
+    public boolean isGM(Employee employee){
+        if(employee.getPosition().getHierarchy()==3)
+            return true;
+        return false;
+    }
+
+    public boolean isDM(Employee employee){
+        if(employee.getPosition().getHierarchy()==4)
+            return true;
+        return false;
+    }
+
+    public List<MaterialRequest> findAllPendingMaterialRequests(Employee employee){
+        if(isPM(employee))
+            return materialRequestDao.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(employee.getPosition().getHierarchy(), StatusEnum.PENDING, employee);
+        else if(isGM(employee) || isDM(employee))
+            return materialRequestDao.findByCurrentLevelOfHierarchyAndStatus(employee.getPosition().getHierarchy(), StatusEnum.PENDING);
+        else
+            return materialRequestDao.findByStatus(StatusEnum.OPEN);
     }
 }

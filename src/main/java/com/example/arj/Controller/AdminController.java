@@ -20,7 +20,7 @@ public class AdminController {
 
     @GetMapping("/position")
     public List<Position> findAllPositions() {
-        return adminService.findAllPositions();
+        return adminService.findAllValidPositions();
     }
 
     @PostMapping("/updatePosition")
@@ -32,7 +32,7 @@ public class AdminController {
 
     @GetMapping("/make")
     public List<Make> findAllMakes() {
-        return adminService.findAllMakes();
+        return adminService.findAllValidMakes();
     }
 
     /*
@@ -59,7 +59,7 @@ public class AdminController {
 
     @GetMapping("/origin")
     public List<Origin> findAllOrigins() {
-        return adminService.findAllOrigins();
+        return adminService.findAllValidOrigins();
     }
 
     @PostMapping("/updateOrigin")
@@ -69,7 +69,7 @@ public class AdminController {
 
     @GetMapping("/uom")
     public List<UOM> findAllUOMs() {
-        return adminService.findAllUOMs();
+        return adminService.findAllValidUOMs();
     }
 
     @PostMapping("/updateUOM")
@@ -79,7 +79,7 @@ public class AdminController {
 
     @GetMapping("/item")
     public List<Item> findAllItems() {
-        return adminService.findAllItems();
+        return adminService.findAllValidItems();
     }
 
     @PostMapping("/updateItem")
@@ -89,7 +89,7 @@ public class AdminController {
 
     @GetMapping("/service")
     public List<Service> findAllServices() {
-        return adminService.findAllServices();
+        return adminService.findAllValidServices();
     }
 
     @PostMapping("/updateService")
