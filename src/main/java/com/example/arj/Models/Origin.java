@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("Origin")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Origin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,16 +1,13 @@
 package com.example.arj.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @JsonRootName("Item")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +24,7 @@ public class Item {
     @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
+    @JsonProperty("itemMRMappings")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "item")
     @JsonIgnoreProperties(value = {"item", "hibernateLazyInitializer"}, allowSetters = true)
     private List<ItemMRMapping> itemMRMappings;

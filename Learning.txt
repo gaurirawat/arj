@@ -38,4 +38,13 @@ Controller:
 findAssignedProject()
 findAllPendingMRs()
 new Ones
-tesst MR service
+test MR service
+
+Corrections:
+the findItemByService service is consuming incorrect dao function.
+
+mr-> service-> item-> itemMRMapping-> mr
+itemMRMappings-> materialRequest-> service-> items-> itemMRMappings
+
+unidirectional mapping best practices:
+https://www.baeldung.com/hibernate-one-to-many

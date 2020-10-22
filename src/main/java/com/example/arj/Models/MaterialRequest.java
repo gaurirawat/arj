@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("MaterialRequest")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class MaterialRequest {
 
     @Id
@@ -34,7 +34,7 @@ public class MaterialRequest {
     private Employee raisedBy;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
-    @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
@@ -59,6 +59,7 @@ public class MaterialRequest {
     private Date doCompletion;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private StatusEnum status = StatusEnum.PENDING;
 
     private String remark;

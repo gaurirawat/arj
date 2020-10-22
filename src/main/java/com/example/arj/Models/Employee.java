@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("Employee")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,property = "@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,property = "@id")
 public class Employee {
 
     @Id
@@ -21,7 +21,7 @@ public class Employee {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "positionId")
-    @JsonIgnoreProperties(value = {"employees", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"employees", "transactions","hibernateLazyInitializer"}, allowSetters = true)
     private Position position;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
@@ -29,11 +29,11 @@ public class Employee {
     private Account account;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
-    @JsonIgnoreProperties(value = {"employee", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "raisedBy")
-    @JsonIgnoreProperties(value = {"raisedBy", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"raisedBy", "project", "hibernateLazyInitializer"}, allowSetters = true)
     private List<MaterialRequest> materialRequests;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pe")
@@ -41,12 +41,12 @@ public class Employee {
 //    private List<ProjectPEMapping> projectPEMappings;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "manager")
-    @JsonIgnoreProperties(value = {"manager", "hibernateLazyInitializer"}, allowSetters = true)
-    private List<Project> PMProjects;
+    @JsonIgnoreProperties(value = {"manager", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
+    private List<Project> pmProjects;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pes")
-    @JsonIgnoreProperties(value = {"pes", "hibernateLazyInitializer"}, allowSetters = true)
-    private List<Project> PEProjects;
+    @JsonIgnoreProperties(value = {"pes", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
+    private List<Project> peProjects;
 
 //    @Column(nullable = false)
     private String name;
@@ -86,20 +86,20 @@ public class Employee {
         this.materialRequests = materialRequests;
     }
 
-    public List<Project> getPMProjects() {
-        return PMProjects;
+    public List<Project> getPmProjects() {
+        return pmProjects;
     }
 
-    public void setPMProjects(List<Project> PMProjects) {
-        this.PMProjects = PMProjects;
+    public void setPmProjects(List<Project> pmProjects) {
+        this.pmProjects = pmProjects;
     }
 
-    public List<Project> getPEProjects() {
-        return PEProjects;
+    public List<Project> getPeProjects() {
+        return peProjects;
     }
 
-    public void setPEProjects(List<Project> PEProjects) {
-        this.PEProjects = PEProjects;
+    public void setPeProjects(List<Project> peProjects) {
+        this.peProjects = peProjects;
     }
 
     public String getName() {

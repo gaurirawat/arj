@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity(name = "item_mr_mapping")
 @JsonRootName("ItemMRMapping")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class ItemMRMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

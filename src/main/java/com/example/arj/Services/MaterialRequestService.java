@@ -95,9 +95,9 @@ public class MaterialRequestService {
     public List<Project> findAssignedProjects(Employee employee){
         List<Project> projects;
         if(isPM(employee))
-            projects= employee.getPMProjects();
+            projects= employee.getPmProjects();
         else
-            projects= employee.getPEProjects();
+            projects= employee.getPeProjects();
 
         for(int i=0;i<projects.size();++i){
             if(!projects.get(i).isValid()){
@@ -134,4 +134,5 @@ public class MaterialRequestService {
         else
             return materialRequestDao.findByStatus(StatusEnum.OPEN);
     }
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("Project")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Project {
 
     @Id
@@ -20,12 +20,12 @@ public class Project {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "managerId")
-    @JsonIgnoreProperties(value = {"PMProjects", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"pmProjects", "materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
     private Employee manager;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "project_pe_mapping", joinColumns = @JoinColumn(name = "projectId"), inverseJoinColumns = @JoinColumn(name = "employeeId"))
-    @JsonIgnoreProperties(value = {"PEProjects", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"peProjects","materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Employee> pes;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
@@ -33,7 +33,7 @@ public class Project {
 //    private List<ProjectPEMapping> projectPEMappings;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
-    @JsonIgnoreProperties(value = {"project", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"project", "raisedBy", "hibernateLazyInitializer"}, allowSetters = true)
     private List<MaterialRequest> materialRequests;
 
     @Column(nullable = false)

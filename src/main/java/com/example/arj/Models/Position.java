@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("Position")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Position {
 
     @Id
@@ -23,7 +23,7 @@ public class Position {
     private List<Employee> employees;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "levelOfHierarchy")
-    @JsonIgnoreProperties(value = {"levelOfHierarchy", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @Column(nullable = false)

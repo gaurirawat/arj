@@ -48,7 +48,7 @@ public class AdminController {
             "deleteList":
             [
                 {"id":"1"},
-                {"id":"2","value":"2"},
+                {"id":"2","value":"2"}
             ]
         }
     */
@@ -129,11 +129,11 @@ public class AdminController {
     }
      */
     @PostMapping("/createProject")
-    public void createProject(@Valid @RequestBody AdminWrapper adminWrapper){
+    public Project createProject(@Valid @RequestBody AdminWrapper adminWrapper){
         String name=adminWrapper.getName();
         String code=adminWrapper.getCode();
         int managerId=adminWrapper.getManagerId();
         List<Integer> peIds=adminWrapper.getPeIds();
-        adminService.createProject(name, code, managerId, peIds);
+        return adminService.createProject(name, code, managerId, peIds);
     }
 }

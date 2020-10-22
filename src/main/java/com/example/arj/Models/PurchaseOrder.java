@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @JsonRootName("PurchaseOrder")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class PurchaseOrder {
 
     @Id

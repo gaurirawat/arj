@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 
 @Entity
 @JsonRootName("Transaction")
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Transaction {
 
     @Id
@@ -34,13 +34,14 @@ public class Transaction {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "levelOfHierarchyId")
-    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"transactions", "employees", "hibernateLazyInitializer"}, allowSetters = true)
     private Position levelOfHierarchy;
 
     @Column(nullable = false, updatable = false)
     private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @Column(nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     private ActionEnum action;
 
     @Column(nullable = false)
