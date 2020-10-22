@@ -76,6 +76,8 @@ public class AdminService {
 
     public List<Item> findAllValidItems(){return itemDao.findByIsValidIsTrue();}
 
+    public List<Item> findAllValidItemsByServiceId(Integer id){return  serviceDao.find(id).getItems();}
+
     public void updateItems(List<Item> addItems, List<Item> deleteItems){
         for(Item item: addItems)
             itemDao.save(item);

@@ -14,3 +14,28 @@ getOne() vs findById():
 Passing of data
 https://lankydan.dev/2017/03/11/passing-data-transfer-objects-with-get-in-spring-boot
 https://www.xspdf.com/resolution/50438739.html
+
+FetchType Lazy and Eager:
+-to-many : Default is Lazy
+-to-one : Default is Eager
+https://thorben-janssen.com/entity-mappings-introduction-jpa-fetchtypes/
+
+Annotations:
+@JsonRootName('value'): to use custom value as key in serialization and deserialization. We need to explicitly enable WRAP_ROOT_VALUE for root-name to be used.
+If not specified then class name will be used.
+@JsonIgnoreProperties:
+https://www.concretepage.com/jackson-api/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype#JsonIgnoreProperties
+
+Circular Reference:
+https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+
+Remaining:
+Mr->status is int and not string
+createProjectService(); check
+findProcessedMR();
+findItemsByService(); : test
+Controller:
+findAssignedProject()
+findAllPendingMRs()
+new Ones
+tesst MR service

@@ -1,9 +1,7 @@
 package com.example.arj.Models;
 
 import com.example.arj.Utils.StatusEnum;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,6 +10,7 @@ import java.util.List;
 
 @Entity
 @JsonRootName("MaterialRequest")
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class MaterialRequest {
 
     @Id

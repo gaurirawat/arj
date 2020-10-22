@@ -29,7 +29,7 @@ public class MakeController {
     //http://localhost:8010/make/findAll
     @GetMapping
     public List<Make> findAll() {
-        return adminService.findAllMakes();
+        return adminService.findAllValidMakes();
     }
 
 
