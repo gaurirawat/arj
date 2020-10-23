@@ -24,12 +24,12 @@ public class Transaction {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "employeeId")
-    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"transactions", "position", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
     private Employee employee;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "materialRequestId")
-    @JsonIgnoreProperties(value = {"transactions", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"transactions", "raisedBy","hibernateLazyInitializer"}, allowSetters = true)
     private MaterialRequest materialRequest;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)

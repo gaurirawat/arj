@@ -4,6 +4,7 @@ import com.example.arj.DAO.*;
 import com.example.arj.Models.*;
 import com.example.arj.Utils.ActionEnum;
 import com.example.arj.Utils.StatusEnum;
+import com.example.arj.Utils.Wrappers.ItemMRMappingWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
@@ -45,7 +46,7 @@ public class MaterialRequestService {
     @Autowired
     TransactionDao transactionDao;
 
-    public MaterialRequest createMaterialRequest(String areaFloor, Date doRequiredDelivery, String instruction, int serviceId, int projectId, int raisedById, List<ItemMRMapping> itemMRMappings){
+    public MaterialRequest createMaterialRequest(String areaFloor, Date doRequiredDelivery, String instruction, int serviceId, int projectId, int raisedById, List<ItemMRMappingWrapper> itemMRMappingWrappers){
         MaterialRequest materialRequest= new MaterialRequest();
         materialRequest.setAreaFloor(areaFloor);
         materialRequest.setDoRequiredDelivery(doRequiredDelivery);
@@ -58,7 +59,11 @@ public class MaterialRequestService {
         materialRequest.setRaisedBy(employee);
         materialRequestDao.save(materialRequest);
 
-        for(ItemMRMapping itemMRMapping: itemMRMappings){
+        for(ItemMRMappingWrapper itemMRMappingWrapper: itemMRMappingWrappers){
+            ItemMRMapping itemMRMapping= new ItemMRMapping();
+            itemMRMapping.setOrigin(originDao.find(itemMRMappingWrapper.getOriginId()));
+            itemMRMapping.setMake(makeDao.find(itemMRMappingWrapper.getMakeId()));
+            itemMRMapping.setItem(itemDao.find(itemMRMappingWrapper.getItemId()));
             itemMRMapping.setMaterialRequest(materialRequest);
             itemMRMappingDao.save(itemMRMapping);
         }
@@ -72,7 +77,8 @@ public class MaterialRequestService {
         return transactionDao.save(transaction);
     }
 
-    public void approveMaterialRequest(Employee employee, int materialRequestId){
+    public void approveMaterialRequest(int employeeId, int materialRequestId){
+        Employee employee=employeeDao.find(employeeId);
         MaterialRequest materialRequest=materialRequestDao.find(materialRequestId);
         materialRequest.setCurrentLevelOfHierarchy(materialRequest.getCurrentLevelOfHierarchy()+1);
         if(employee.getPosition().isCanEnd())
@@ -82,7 +88,8 @@ public class MaterialRequestService {
         logTransaction(ActionEnum.APPROVE, employee, materialRequest);
     }
 
-    public void declineMaterialRequest(Employee employee, int materialRequestId, String remark){
+    public void declineMaterialRequest(int employeeId, int materialRequestId, String remark){
+        Employee employee=employeeDao.find(employeeId);
         MaterialRequest materialRequest= materialRequestDao.find(materialRequestId);
         materialRequest.setStatus(StatusEnum.DECLINED);
         materialRequest.setDoCancellation(Date.valueOf(LocalDate.now()));
@@ -92,7 +99,8 @@ public class MaterialRequestService {
         logTransaction(ActionEnum.DECLINE, employee, materialRequest);
     }
 
-    public List<Project> findAssignedProjects(Employee employee){
+    public List<Project> findAssignedProjects(int employeeId){
+        Employee employee=employeeDao.find(employeeId);
         List<Project> projects;
         if(isPM(employee))
             projects= employee.getPmProjects();
@@ -126,7 +134,8 @@ public class MaterialRequestService {
         return false;
     }
 
-    public List<MaterialRequest> findAllPendingMaterialRequests(Employee employee){
+    public List<MaterialRequest> findAllPendingMaterialRequests(int employeeId){
+        Employee employee=employeeDao.find(employeeId);
         if(isPM(employee))
             return materialRequestDao.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(employee.getPosition().getHierarchy(), StatusEnum.PENDING, employee);
         else if(isGM(employee) || isDM(employee))

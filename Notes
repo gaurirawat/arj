@@ -5,3 +5,5 @@ rest are all soft delete.
 //handled
 while fetching assigned projects for any employee if we get directly using employee.PEprojects/PMprojects then
 the inactive projects will also be returned.
+
+

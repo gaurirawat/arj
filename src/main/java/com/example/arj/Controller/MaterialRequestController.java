@@ -1,15 +1,15 @@
 package com.example.arj.Controller;
 
+import com.example.arj.DAO.EmployeeDao;
+import com.example.arj.DAO.MaterialRequestDao;
 import com.example.arj.Models.Employee;
 import com.example.arj.Models.ItemMRMapping;
 import com.example.arj.Models.MaterialRequest;
 import com.example.arj.Services.MaterialRequestService;
+import com.example.arj.Utils.Wrappers.ItemMRMappingWrapper;
 import com.example.arj.Utils.Wrappers.MaterialRequestWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Date;
@@ -19,6 +19,13 @@ import java.util.List;
 @RequestMapping("materialRequest")
 public class MaterialRequestController {
 
+    @Autowired
+    MaterialRequestDao materialRequestDao;
+
+    @GetMapping
+    public List<MaterialRequest> test(){
+        return materialRequestDao.findAll();
+    }
     @Autowired
     MaterialRequestService materialRequestService;
 
@@ -30,22 +37,22 @@ public class MaterialRequestController {
         int serviceId=materialRequestWrapper.getServiceId();
         int projectId=materialRequestWrapper.getProjectId();
         int raisedById=materialRequestWrapper.getRaisedById();
-        List<ItemMRMapping> itemMRMappings= materialRequestWrapper.getItemMRMappings();
-        return materialRequestService.createMaterialRequest(areaFloor, doRequiredDelivery, instruction, serviceId, projectId, raisedById, itemMRMappings);
+        List<ItemMRMappingWrapper> itemMRMappingWrappers= materialRequestWrapper.getItemMRMappingWrappers();
+        return materialRequestService.createMaterialRequest(areaFloor, doRequiredDelivery, instruction, serviceId, projectId, raisedById, itemMRMappingWrappers);
     }
 
     @PostMapping("/approve")
     public void approveMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
-        Employee employee=materialRequestWrapper.getEmployee();
+        int employeeId=materialRequestWrapper.getEmployeeId();
         int materialRequestId=materialRequestWrapper.getMaterialRequestId();
-        materialRequestService.approveMaterialRequest(employee,materialRequestId);
+        materialRequestService.approveMaterialRequest(employeeId,materialRequestId);
     }
 
     @PostMapping("/decline")
     public void declineMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
-        Employee employee=materialRequestWrapper.getEmployee();
+        int employeeId=materialRequestWrapper.getEmployeeId();
         int materialRequestId=materialRequestWrapper.getMaterialRequestId();
         String remark=materialRequestWrapper.getRemark();
-        materialRequestService.declineMaterialRequest(employee,materialRequestId,remark);
+        materialRequestService.declineMaterialRequest(employeeId,materialRequestId,remark);
     }
 }

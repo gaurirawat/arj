@@ -24,10 +24,10 @@ public class Item {
     @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
-    @JsonProperty("itemMRMappings")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "item")
-    @JsonIgnoreProperties(value = {"item", "hibernateLazyInitializer"}, allowSetters = true)
-    private List<ItemMRMapping> itemMRMappings;
+//    @JsonProperty("itemMRMappings")
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "item")
+//    @JsonIgnoreProperties(value = {"item", "hibernateLazyInitializer"}, allowSetters = true)
+//    private List<ItemMRMapping> itemMRMappings;
 
     @Column(nullable = false)
     private String name;
@@ -51,21 +51,21 @@ public class Item {
         this.uom = uom;
     }
 
-    public Service getService() {
-        return service;
-    }
-
-    public void setService(Service service) {
-        this.service = service;
-    }
-
-    public List<ItemMRMapping> getItemMRMappings() {
-        return itemMRMappings;
-    }
-
-    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
-        this.itemMRMappings = itemMRMappings;
-    }
+//    public Service getService() {
+//        return service;
+//    }
+//
+//    public void setService(Service service) {
+//        this.service = service;
+//    }
+//
+//    public List<ItemMRMapping> getItemMRMappings() {
+//        return itemMRMappings;
+//    }
+//
+//    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
+//        this.itemMRMappings = itemMRMappings;
+//    }
 
     public String getName() {
         return name;

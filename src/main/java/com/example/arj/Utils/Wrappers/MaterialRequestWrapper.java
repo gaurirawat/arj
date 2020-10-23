@@ -16,10 +16,10 @@ public class MaterialRequestWrapper {
     private int serviceId;
     private int projectId;
     private int raisedById;
+    private int employeeId;
     private int materialRequestId;
 
-    private List<ItemMRMapping> itemMRMappings;
-    private Employee employee;
+    private List<ItemMRMappingWrapper> itemMRMappingWrappers;
 
     public String getAreaFloor() {
         return areaFloor;
@@ -85,19 +85,19 @@ public class MaterialRequestWrapper {
         this.materialRequestId = materialRequestId;
     }
 
-    public List<ItemMRMapping> getItemMRMappings() {
-        return itemMRMappings;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
-        this.itemMRMappings = itemMRMappings;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<ItemMRMappingWrapper> getItemMRMappingWrappers() {
+        return itemMRMappingWrappers;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setItemMRMappingWrappers(List<ItemMRMappingWrapper> itemMRMappingWrappers) {
+        this.itemMRMappingWrappers = itemMRMappingWrappers;
     }
 }

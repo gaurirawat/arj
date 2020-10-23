@@ -19,6 +19,7 @@ public class Service {
     private Integer id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "service")
+//    @JoinColumn(name = "serviceId")
     @JsonIgnoreProperties(value = {"service", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Item> items;
 

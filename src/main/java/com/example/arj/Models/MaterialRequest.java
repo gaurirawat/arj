@@ -25,16 +25,16 @@ public class MaterialRequest {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "projectId")
-    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"materialRequests", "manager","hibernateLazyInitializer"}, allowSetters = true)
     private Project project;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "raisedById")
-    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"materialRequests","transactions","peProjects","pmProjects","hibernateLazyInitializer"}, allowSetters = true)
     private Employee raisedBy;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
-    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = { "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")

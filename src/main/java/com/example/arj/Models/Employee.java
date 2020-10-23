@@ -33,7 +33,7 @@ public class Employee {
     private List<Transaction> transactions;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "raisedBy")
-    @JsonIgnoreProperties(value = {"raisedBy", "project", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"raisedBy", "project", "transactions", "hibernateLazyInitializer"}, allowSetters = true)
     private List<MaterialRequest> materialRequests;
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pe")
@@ -41,11 +41,11 @@ public class Employee {
 //    private List<ProjectPEMapping> projectPEMappings;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "manager")
-    @JsonIgnoreProperties(value = {"manager", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"manager","pes","materialRequests","hibernateLazyInitializer"}, allowSetters = true)
     private List<Project> pmProjects;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pes")
-    @JsonIgnoreProperties(value = {"pes", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"pes","manager", "materialRequests","hibernateLazyInitializer"}, allowSetters = true)
     private List<Project> peProjects;
 
 //    @Column(nullable = false)

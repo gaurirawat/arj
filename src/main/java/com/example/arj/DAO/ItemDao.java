@@ -37,7 +37,7 @@ public class ItemDao implements Dao<Item> {
         return itemRepository.findByIsValidIsTrue();
     }
 
-    public List<Item> findByServiceId(Integer id) {return itemRepository.findByIsValidTrueAndService_Id(id);}
+    public List<Item> findByIsValidTrueAndService_Id(Integer id) {return itemRepository.findByIsValidTrueAndService_Id(id);}
 
     public void delete(Item itemD) {
         Item item= itemRepository.getOne(itemD.getId());

@@ -19,11 +19,11 @@ public class Position {
     private Integer id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "position")
-    @JsonIgnoreProperties(value = {"position", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"position", "transaction","hibernateLazyInitializer"}, allowSetters = true)
     private List<Employee> employees;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "levelOfHierarchy")
-    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"levelOfHierarchy", "employee", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
     @Column(nullable = false)
