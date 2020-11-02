@@ -129,4 +129,14 @@ public class Employee {
     public Employee() {
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", position=" + position +
+                ", account=" + account +
+                ", name='" + name + '\'' +
+                ", isValid=" + isValid +
+                '}';
+    }
 }

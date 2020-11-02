@@ -1,0 +1,1 @@
+INSERT INTO arj.project (id, code, is_valid, name, manager_id) VALUES (1, 'p1', true, 'project1', 2);

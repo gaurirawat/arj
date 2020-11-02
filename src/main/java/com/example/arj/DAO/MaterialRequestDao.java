@@ -6,6 +6,7 @@ import com.example.arj.Repositories.MaterialRequestRepository;
 import com.example.arj.Utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.MatrixVariable;
 
 import java.util.List;
 
@@ -42,7 +43,19 @@ public class MaterialRequestDao implements Dao<MaterialRequest> {
         return materialRequestRepository.findByCurrentLevelOfHierarchyAndStatus(currentLevelOfHierarchy,statusEnum);
     }
 
+    public List<MaterialRequest> findByProject_Manager_IdAndCurrentLevelOfHierarchyGreaterThan(Integer id, Integer hierarchy){
+        return materialRequestRepository.findByProject_Manager_IdAndCurrentLevelOfHierarchyGreaterThan(id,hierarchy);
+    }
+
+    public List<MaterialRequest> findByCurrentLevelOfHierarchyGreaterThan(Integer hierarchy){
+        return materialRequestRepository.findByCurrentLevelOfHierarchyGreaterThan(hierarchy);
+    }
+
     public List<MaterialRequest> findByStatus( StatusEnum statusEnum){
         return materialRequestRepository.findByStatus(statusEnum);
+    }
+
+    public List<MaterialRequest> findByRaisedBy(Integer id){
+        return materialRequestRepository.findByRaisedBy_Id(id);
     }
 }

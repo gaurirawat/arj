@@ -29,22 +29,48 @@ https://www.concretepage.com/jackson-api/jackson-jsonignore-jsonignoreproperties
 Circular Reference:
 https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
 
+unidirectional mapping best practices:
+https://www.baeldung.com/hibernate-one-to-many
+
+SessiosnStorage LocalStorage Cookie:
+https://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookies
+https://www.digitalocean.com/community/tutorials/js-introduction-localstorage-sessionstorage
+
+Cookie and HTTP headers:
+HTTP headers are used to pass additional information with HTTP response or HTTP requests.
+A cookie is an HTTP request header i.e. used in the requests sent by the user to the server.
+It contains the cookies previously sent by the server using set-cookies.
+https://dzone.com/articles/how-to-use-cookies-in-spring-boot
+https://attacomsian.com/blog/cookies-spring-boot
+
+how to make authentication and authorization stateless:
+https://golb.hplar.ch/2019/05/stateless.html
+https://medium.com/@erangadulshan.14/replace-inmemory-token-store-with-a-persistent-one-in-spring-boot-oauth2-c00a4c35f90f
+
+CSRF and XSS:
+Hey Sagar – so, once you enable CSRF protection, you’ll have to adapt your clients to send the new CSRF token as well. So, you’ll have to modify your client (your form, or whatever you’re using to do the upload) – to make sure it does send that new token.
+And, if you’re accessing the API programmatically, you’ll of course have to take care of sending that token yourself (some libraries do have support for that).
+Hope that helps. Cheers,
+Eugen.
+ResponseEntity:
+https://www.baeldung.com/spring-boot-json
+https://www.baeldung.com/spring-response-entity
+
+blueberry cheesecake:
+
+filter and streams:
+
 Remaining:
-Mr->status is int and not string
-createProjectService(); check
-findProcessedMR();
-findItemsByService(); : test
-Controller:
-findAssignedProject()
-findAllPendingMRs()
-new Ones
-test MR service
+Mr->status is int and not string : Done
+createProjectService(); Done
+findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(): test
+findProcessedMR(); : Done
+findItemsByService(); : Done
 
 Corrections:
-the findItemByService service is consuming incorrect dao function.
+the findItemByService service is consuming incorrect dao function. : Done
 
 mr-> service-> item-> itemMRMapping-> mr
 itemMRMappings-> materialRequest-> service-> items-> itemMRMappings
 
-unidirectional mapping best practices:
-https://www.baeldung.com/hibernate-one-to-many
+

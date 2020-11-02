@@ -55,4 +55,9 @@ public class MaterialRequestController {
         String remark=materialRequestWrapper.getRemark();
         materialRequestService.declineMaterialRequest(employeeId,materialRequestId,remark);
     }
+
+    @GetMapping("/findAllProcessedMaterialRequest")
+    public List<MaterialRequest> findAllProcessedMaterialRequest(@RequestParam Integer id){
+        return materialRequestService.findAllProcessedMaterialRequest(id);
+    }
 }

@@ -25,8 +25,19 @@ public class Account {
     @Column(nullable = false)
     private String username;
 
+
     @Column(nullable = false)
     private String password;
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Integer getId() {
         return id;
@@ -66,5 +77,13 @@ public class Account {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

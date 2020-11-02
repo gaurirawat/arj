@@ -19,10 +19,10 @@ public class Item {
     @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
     private UOM uom;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "serviceId")
-    @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
-    private Service service;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "serviceId")
+//    @JsonIgnoreProperties(value = {"items", "hibernateLazyInitializer"}, allowSetters = true)
+//    private Service service;
 
 //    @JsonProperty("itemMRMappings")
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "item")

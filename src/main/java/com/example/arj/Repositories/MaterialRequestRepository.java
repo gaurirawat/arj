@@ -13,4 +13,8 @@ public interface MaterialRequestRepository extends JpaRepository<MaterialRequest
     public List<MaterialRequest> findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(Integer currentLevelOfHierarchy, StatusEnum statusEnum, Employee employee);
     public List<MaterialRequest> findByCurrentLevelOfHierarchyAndStatus(Integer currentLevelOfHierarchy, StatusEnum statusEnum);
     public List<MaterialRequest> findByStatus(StatusEnum statusEnum);
+    public List<MaterialRequest> findByRaisedBy_Id(Integer id);
+    public List<MaterialRequest> findByProject_Manager_IdAndCurrentLevelOfHierarchyGreaterThan(Integer id,Integer hierarchy);
+    public List<MaterialRequest> findByCurrentLevelOfHierarchyGreaterThan(Integer hierarchy);
+
 }

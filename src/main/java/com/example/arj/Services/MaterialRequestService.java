@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @org.springframework.stereotype.Service
 public class MaterialRequestService {
@@ -116,6 +116,10 @@ public class MaterialRequestService {
         return projects;
     }
 
+    public boolean isPE(Employee employee){
+        return employee.getPosition().getHierarchy() == 1;
+    }
+
     public boolean isPM(Employee employee){
         if(employee.getPosition().getHierarchy()==2)
             return true;
@@ -128,7 +132,7 @@ public class MaterialRequestService {
         return false;
     }
 
-    public boolean isDM(Employee employee){
+    public boolean isMD(Employee employee){
         if(employee.getPosition().getHierarchy()==4)
             return true;
         return false;
@@ -138,10 +142,35 @@ public class MaterialRequestService {
         Employee employee=employeeDao.find(employeeId);
         if(isPM(employee))
             return materialRequestDao.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(employee.getPosition().getHierarchy(), StatusEnum.PENDING, employee);
-        else if(isGM(employee) || isDM(employee))
+        else if(isGM(employee) || isMD(employee))
             return materialRequestDao.findByCurrentLevelOfHierarchyAndStatus(employee.getPosition().getHierarchy(), StatusEnum.PENDING);
         else
             return materialRequestDao.findByStatus(StatusEnum.OPEN);
     }
 
+    public List<MaterialRequest> findAllProcessedMaterialRequest(Integer id){
+        Employee employee = employeeDao.find(id);
+        if(isPE(employee)){
+//            System.out.println(employee);
+            return materialRequestDao.findByRaisedBy(employee.getId());
+        }
+        else if(isPM(employee)){
+            Set<MaterialRequest> res = new HashSet<>();
+            //MRs where he is PM
+            res.addAll(materialRequestDao.findByProject_Manager_IdAndCurrentLevelOfHierarchyGreaterThan(employee.getId(), employee.getPosition().getHierarchy()));
+            //MRs declined by him
+            res.addAll(materialRequestDao.findByCurrentLevelOfHierarchyAndStatus(employee.getPosition().getHierarchy(),StatusEnum.DECLINED));
+            return new ArrayList<>(res);
+        }
+        else if(isGM(employee) || isMD(employee)){
+            Set<MaterialRequest> res = new HashSet<>();
+            //MRs which are higher than his hierarchy
+            res.addAll(materialRequestDao.findByCurrentLevelOfHierarchyGreaterThan(employee.getPosition().getHierarchy()));
+            //declined by him
+            res.addAll(materialRequestDao.findByCurrentLevelOfHierarchyAndStatus(employee.getPosition().getHierarchy(),StatusEnum.DECLINED));
+            return new ArrayList<>(res);
+        }
+        //All MRs which are closed for now
+        return materialRequestDao.findByStatus(StatusEnum.CLOSE);
+    }
 }

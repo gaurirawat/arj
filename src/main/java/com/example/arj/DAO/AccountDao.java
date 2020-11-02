@@ -31,4 +31,8 @@ public class AccountDao implements Dao<Account> {
     public Account update(Account account) {
         return accountRepository.save(account);
     }
+
+    public Account findByUsername(String username){
+        return accountRepository.findByUsername(username);
+    }
 }

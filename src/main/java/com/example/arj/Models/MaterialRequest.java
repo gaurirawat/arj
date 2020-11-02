@@ -20,7 +20,7 @@ public class MaterialRequest {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "serviceId")
-    @JsonIgnoreProperties(value = {"materialRequests", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"materialRequests","items", "hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)

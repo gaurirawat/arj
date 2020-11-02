@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class AdminService {
@@ -77,7 +78,10 @@ public class AdminService {
     public List<Item> findAllValidItems(){return itemDao.findByIsValidIsTrue();}
 
     public List<Item> findAllValidItemsByServiceId(Integer id){
-        return itemDao.findByIsValidTrueAndService_Id(id);
+        /*
+        Getting all the item of service ID and filtering with validation.
+        */
+        return serviceDao.find(id).getItems().stream().filter(item -> item.isValid()).collect(Collectors.toList());
     }
 
     public void updateItems(List<Item> addItems, List<Item> deleteItems){

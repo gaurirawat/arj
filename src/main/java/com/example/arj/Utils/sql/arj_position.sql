@@ -1,0 +1,2 @@
+INSERT INTO arj.position (id, can_create, can_end, code, hierarchy, is_valid, name) VALUES (1, true, true, 'a', 1, true, 'a');
+INSERT INTO arj.position (id, can_create, can_end, code, hierarchy, is_valid, name) VALUES (2, true, true, 'b', 2, true, 'b');
