@@ -56,6 +56,31 @@ ResponseEntity:
 https://www.baeldung.com/spring-boot-json
 https://www.baeldung.com/spring-response-entity
 
+setting Cookies with localhost:
+- added mapping of localhost.com with 127.0.0.1 in /etc/hosts
+
+- sameSite Attribute and Secure options
+https://web.dev/samesite-cookies-explained/
+
+- Lax and cross-origin problem
+
+- withCredentials option for cors
+https://angular.io/api/common/http/HttpRequest#withCredentials
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials#:~:text=withCredentials%20property%20is%20a%20Boolean,effect%20on%20same%2Dsite%20requests.
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
+https://livebook.manning.com/book/cors-in-action/chapter-5/1
+https://spring.io/blog/2015/06/08/cors-support-in-spring-framework
+
+- Cookie and setHeader and their options
+- domain name constrains for setting cookies with localhost
+https://bugs.chromium.org/p/chromium/issues/detail?id=56211
+https://stackoverflow.com/questions/7346919/chrome-localhost-cookie-not-being-set
+https://bugs.chromium.org/p/chromium/issues/detail?id=551906
+https://stackoverflow.com/questions/1134290/cookies-on-localhost-with-explicit-domain#:~:text=When%20working%20on%20localhost%20%2C%20the,don't%20call%20the%20cookie.
+https://github.com/js-cookie/js-cookie/issues/247#issuecomment-567832007
+
+- invalid host-header and hosting angular on different domains
+https://help.crossbrowsertesting.com/faqs/testing/invalid-host-header-error/
 blueberry cheesecake:
 
 filter and streams:

@@ -45,6 +45,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         //when we store jwt token into coes
         Cookie[] cookies = request.getCookies();
         //if not cookie then just skip this part
+        System.out.println("Authorising...");
         if (cookies ==null) {
 //            System.out.println("No cookies!");
             chain.doFilter(request,response);   //invokes next filter from the chain
@@ -60,7 +61,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken authenticate(HttpServletRequest request) {
 //        String token = request.getHeader(HEADER_NAME);
         String token=null;
-
+        System.out.println("Looking for matching cookies...");
         Cookie[] cookies = request.getCookies();
         for(Cookie cookie:cookies){
             System.out.println(cookie.toString());

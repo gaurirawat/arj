@@ -67,10 +67,15 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         //to add token to the header
 //        res.addHeader("token", token);
-        Cookie cookie = new Cookie(HEADER_NAME,token);
-        cookie.setHttpOnly(true);   //only accessible by server and not javascript to avoid cross site scripting(XSS) attack
-        res.addCookie(cookie);
-
+//        Cookie cookie = new Cookie(HEADER_NAME,token);
+////        cookie.setDomain("localhost.com");
+//        cookie.setSecure(false);
+//        cookie.setPath("/");
+//        cookie.setMaxAge(30*60);
+//        res.addCookie(cookie);
+//        cookie.se
+//        cookie.setHttpOnly(true);   //only accessible by server and not javascript to avoid cross site scripting(XSS) attack
+        res.setHeader("Set-Cookie",HEADER_NAME+"="+token+";SameSite=None;Secure;Max-Age=1800;");
     }
 
 }
