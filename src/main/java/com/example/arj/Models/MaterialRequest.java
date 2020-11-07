@@ -1,6 +1,6 @@
 package com.example.arj.Models;
 
-import com.example.arj.Utils.StatusEnum;
+import com.example.arj.Utils.Enums.StatusEnum;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
@@ -20,12 +20,12 @@ public class MaterialRequest {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "serviceId")
-    @JsonIgnoreProperties(value = {"materialRequests","items", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"materialRequests", "items","hibernateLazyInitializer"}, allowSetters = true)
     private Service service;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "projectId")
-    @JsonIgnoreProperties(value = {"materialRequests", "manager","hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"materialRequests", "manager", "hibernateLazyInitializer"}, allowSetters = true)
     private Project project;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
@@ -37,7 +37,9 @@ public class MaterialRequest {
     @JsonIgnoreProperties(value = { "employee", "materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Transaction> transactions;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
+    //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "materialRequest")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "materialRequestId")
     @JsonIgnoreProperties(value = {"materialRequest", "hibernateLazyInitializer"}, allowSetters = true)
     private List<PurchaseOrder> purchaseOrders;
 

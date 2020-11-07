@@ -1,4 +1,4 @@
-package com.example.arj.Utils;
+package com.example.arj.Utils.Enums;
 
 public enum ActionEnum {
     CREATE,

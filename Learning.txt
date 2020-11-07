@@ -92,6 +92,8 @@ findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(): test
 findProcessedMR(); : Done
 findItemsByService(); : Done
 
+unidirectional mapping best practices:
+https://www.baeldung.com/hibernate-one-to-many
 Corrections:
 the findItemByService service is consuming incorrect dao function. : Done
 
@@ -99,3 +101,19 @@ mr-> service-> item-> itemMRMapping-> mr
 itemMRMappings-> materialRequest-> service-> items-> itemMRMappings
 
 
+
+bidirectional mapping issue:
+https://notesonjava.wordpress.com/2008/11/03/managing-the-bidirectional-relationship/
+https://intellipaat.com/community/30620/jpa-hibernate-detached-entity-passed-to-persist
+
+upload/download of files using file system:
+https://devwithus.com/download-upload-files-with-spring-boot/
+https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
+
+
+1.add dependency
+2.enable annotation from file-> annotation processor-> enable processor:
+https://stackoverflow.com/questions/33483697/re-run-spring-boot-configuration-annotation-processor-to-update-generated-metada/34793756
+https://stackoverflow.com/questions/42839126/configurationproperties-spring-boot-configuration-annotation-processor-not-foun
+
+https://www.programmersought.com/article/7364470735/

@@ -2,8 +2,8 @@ package com.example.arj.Services;
 
 import com.example.arj.DAO.*;
 import com.example.arj.Models.*;
-import com.example.arj.Utils.ActionEnum;
-import com.example.arj.Utils.StatusEnum;
+import com.example.arj.Utils.Enums.ActionEnum;
+import com.example.arj.Utils.Enums.StatusEnum;
 import com.example.arj.Utils.Wrappers.ItemMRMappingWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,6 +45,10 @@ public class MaterialRequestService {
 
     @Autowired
     TransactionDao transactionDao;
+
+    public List<MaterialRequest> findAll(){
+        return materialRequestDao.findAll();
+    }
 
     public MaterialRequest createMaterialRequest(String areaFloor, Date doRequiredDelivery, String instruction, int serviceId, int projectId, int raisedById, List<ItemMRMappingWrapper> itemMRMappingWrappers){
         MaterialRequest materialRequest= new MaterialRequest();
@@ -141,7 +145,7 @@ public class MaterialRequestService {
     public List<MaterialRequest> findAllPendingMaterialRequests(int employeeId){
         Employee employee=employeeDao.find(employeeId);
         if(isPM(employee))
-            return materialRequestDao.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(employee.getPosition().getHierarchy(), StatusEnum.PENDING, employee);
+            return materialRequestDao.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager_Id(employee.getPosition().getHierarchy(), StatusEnum.PENDING, employee.getId());
         else if(isGM(employee) || isMD(employee))
             return materialRequestDao.findByCurrentLevelOfHierarchyAndStatus(employee.getPosition().getHierarchy(), StatusEnum.PENDING);
         else

@@ -82,8 +82,8 @@ public class AdminController {
         return adminService.findAllValidItems();
     }
 
-    @GetMapping("/itemByServiceId")
-    public List<Item> findAllItemsByServiceId(@RequestParam Integer id){return adminService.findAllValidItemsByServiceId(id);}
+//    @GetMapping("/itemByServiceId")
+//    public List<Item> findAllItemsByServiceId(@RequestParam Integer id){return adminService.findAllValidItemsByServiceId(id);}
 
     @PostMapping("/updateItem")
     public void updateItems(@Valid @RequestBody UpdateWrapper<Item> updateWrapper){

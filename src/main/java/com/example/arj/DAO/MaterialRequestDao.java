@@ -1,9 +1,8 @@
 package com.example.arj.DAO;
 
-import com.example.arj.Models.Employee;
 import com.example.arj.Models.MaterialRequest;
 import com.example.arj.Repositories.MaterialRequestRepository;
-import com.example.arj.Utils.StatusEnum;
+import com.example.arj.Utils.Enums.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.MatrixVariable;
@@ -35,8 +34,8 @@ public class MaterialRequestDao implements Dao<MaterialRequest> {
         return materialRequestRepository.save(materialRequest);
     }
 
-    public List<MaterialRequest> findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(int currentLevelOfHierarchy, StatusEnum statusEnum, Employee employee){
-        return materialRequestRepository.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager(currentLevelOfHierarchy,statusEnum,employee);
+    public List<MaterialRequest> findByCurrentLevelOfHierarchyAndStatusAndProject_Manager_Id(int currentLevelOfHierarchy, StatusEnum statusEnum, int employeeId){
+        return materialRequestRepository.findByCurrentLevelOfHierarchyAndStatusAndProject_Manager_Id(currentLevelOfHierarchy,statusEnum,employeeId);
     }
 
     public List<MaterialRequest> findByCurrentLevelOfHierarchyAndStatus(int currentLevelOfHierarchy, StatusEnum statusEnum){

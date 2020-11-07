@@ -5,6 +5,7 @@ import com.example.arj.DAO.MaterialRequestDao;
 import com.example.arj.Models.Employee;
 import com.example.arj.Models.ItemMRMapping;
 import com.example.arj.Models.MaterialRequest;
+import com.example.arj.Models.Project;
 import com.example.arj.Services.MaterialRequestService;
 import com.example.arj.Utils.Wrappers.ItemMRMappingWrapper;
 import com.example.arj.Utils.Wrappers.MaterialRequestWrapper;
@@ -20,11 +21,11 @@ import java.util.List;
 public class MaterialRequestController {
 
     @Autowired
-    MaterialRequestDao materialRequestDao;
+    MaterialRequestService materialRequestService;
 
     @GetMapping
     public List<MaterialRequest> test(){
-        return materialRequestDao.findAll();
+        return materialRequestService.findAll();
     }
     @Autowired
     MaterialRequestService materialRequestService;
@@ -59,5 +60,15 @@ public class MaterialRequestController {
     @GetMapping("/findAllProcessedMaterialRequest")
     public List<MaterialRequest> findAllProcessedMaterialRequest(@RequestParam Integer id){
         return materialRequestService.findAllProcessedMaterialRequest(id);
+    }
+
+    @GetMapping("/project")
+    public List<Project> findAssignedProjects(@RequestParam int employeeId){
+        return materialRequestService.findAssignedProjects(employeeId);
+    }
+
+    @GetMapping("/pending")
+    public List<MaterialRequest> findAllPendingMaterialRequests(@RequestParam int employeeId){
+        return materialRequestService.findAllPendingMaterialRequests(employeeId);
     }
 }
