@@ -27,8 +27,6 @@ public class MaterialRequestController {
     public List<MaterialRequest> test(){
         return materialRequestService.findAll();
     }
-    @Autowired
-    MaterialRequestService materialRequestService;
 
     @PostMapping("/create")
     public MaterialRequest createMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){

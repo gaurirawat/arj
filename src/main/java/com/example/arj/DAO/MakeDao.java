@@ -29,7 +29,9 @@ public class MakeDao implements Dao<Make> {
 
     @Override
     public Make update(Make make) {
-        return makeRepository.save(make);
+        Make dbMake=makeRepository.getOne(make.getId());
+        dbMake.setValue(make.getValue());
+        return makeRepository.save(dbMake);
     }
 
     public List<Make> findByIsValidIsTrue() {

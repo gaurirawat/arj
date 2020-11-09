@@ -13,6 +13,8 @@ public class ItemDao implements Dao<Item> {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    UOMDao uomDao;
     @Override
     public Item find(Integer id) {
         return itemRepository.getOne(id);
@@ -30,7 +32,10 @@ public class ItemDao implements Dao<Item> {
 
     @Override
     public Item update(Item item) {
-        return itemRepository.save(item);
+        Item dbItem=itemRepository.getOne(item.getId());
+        dbItem.setName(item.getName());
+        dbItem.setUom(uomDao.find(item.getUom().getId()));
+        return itemRepository.save(dbItem);
     }
 
     public List<Item> findByIsValidIsTrue() {

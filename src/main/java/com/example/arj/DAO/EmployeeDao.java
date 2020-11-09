@@ -13,6 +13,9 @@ public class EmployeeDao implements Dao<Employee> {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    PositionDao positionDao;
+
     @Override
     public Employee find(Integer id) {
         return employeeRepository.getOne(id);
@@ -30,7 +33,11 @@ public class EmployeeDao implements Dao<Employee> {
 
     @Override
     public Employee update(Employee employee) {
-        return employeeRepository.save(employee);
+        Employee dbEmployee= employeeRepository.getOne(employee.getId());
+        dbEmployee.setName(employee.getName());
+        dbEmployee.setAccount(employee.getAccount());
+        dbEmployee.setPosition(positionDao.find(employee.getPosition().getId()));
+        return employeeRepository.save(dbEmployee);
     }
 
     public List<Employee> findByIsValidIsTrue() {

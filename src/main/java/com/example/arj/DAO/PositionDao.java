@@ -30,7 +30,13 @@ public class PositionDao implements Dao<Position> {
 
     @Override
     public Position update(Position position) {
-        return positionRepository.save(position);
+        Position dbPosition=positionRepository.getOne(position.getId());
+        dbPosition.setName(position.getName());
+        dbPosition.setCode(position.getCode());
+        dbPosition.setHierarchy(position.getHierarchy());
+        dbPosition.setCanCreate(position.isCanCreate());
+        dbPosition.setCanEnd(position.isCanEnd());
+        return positionRepository.save(dbPosition);
     }
 
     public List<Position> findByIsValidIsTrue() {

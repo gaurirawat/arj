@@ -23,7 +23,11 @@ public class UOMDao implements Dao<UOM> {
     public UOM save(UOM uom){ return uomRepository.save(uom);}
 
     @Override
-    public UOM update(UOM uom){ return uomRepository.save(uom);}
+    public UOM update(UOM uom){
+        UOM dbUom=uomRepository.getOne(uom.getId());
+        dbUom.setUnit(uom.getUnit());
+        return uomRepository.save(dbUom);
+    }
 
     public List<UOM> findByIsValidIsTrue() {
         return uomRepository.findByIsValidIsTrue();

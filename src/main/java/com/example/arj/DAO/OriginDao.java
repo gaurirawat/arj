@@ -29,7 +29,9 @@ public class OriginDao implements Dao<Origin> {
 
     @Override
     public Origin update(Origin origin) {
-        return originRepository.save(origin);
+        Origin dbOrigin=originRepository.getOne(origin.getId());
+        dbOrigin.setValue(origin.getValue());
+        return originRepository.save(dbOrigin);
     }
 
     public List<Origin> findByIsValidIsTrue() {
