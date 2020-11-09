@@ -37,15 +37,15 @@ public class AdminService {
 
     public List<Position> findAllValidPositions(){return positionDao.findByIsValidIsTrue();}
 
-    public void updatePositions(List<Position> addPosition, List<Position> deletePosition) {
-        for (Position position : addPosition)
+    public void updatePositions(List<Position> savePosition, List<Position> deletePosition) {
+        for (Position position : savePosition)
             positionDao.save(position);
 
         for (Position position : deletePosition)
             positionDao.delete(position);
     }
 
-    public void addPosition(Position position){ positionDao.save(position);}
+    public void savePosition(Position position){ positionDao.save(position);}
 
     public void updatePosition(Position position){ positionDao.update(position);}
 
@@ -59,15 +59,15 @@ public class AdminService {
 
     public List<Make> findAllValidMakes(){return makeDao.findByIsValidIsTrue();}
 
-    public void updateMakes(List<Make> addMakes, List<Make> deleteMakes){
-        for(Make make: addMakes)
+    public void updateMakes(List<Make> saveMakes, List<Make> deleteMakes){
+        for(Make make: saveMakes)
             makeDao.save(make);
 
         for(Make make: deleteMakes)
             makeDao.delete(make);
     }
 
-    public void addMake(Make make){ makeDao.save(make);}
+    public void saveMake(Make make){ makeDao.save(make);}
 
     public void updateMake(Make make){ makeDao.update(make);}
 
@@ -81,15 +81,15 @@ public class AdminService {
 
     public List<Origin> findAllValidOrigins(){return originDao.findByIsValidIsTrue();}
 
-    public void updateOrigins(List<Origin> addOrigins, List<Origin> deleteOrigins){
-        for(Origin origin: addOrigins)
+    public void updateOrigins(List<Origin> saveOrigins, List<Origin> deleteOrigins){
+        for(Origin origin: saveOrigins)
             originDao.save(origin);
 
         for(Origin origin: deleteOrigins)
             originDao.delete(origin);
     }
 
-    public void addOrigin(Origin origin){ originDao.save(origin);}
+    public void saveOrigin(Origin origin){ originDao.save(origin);}
 
     public void updateOrigin(Origin origin){ originDao.update(origin);}
 
@@ -103,15 +103,15 @@ public class AdminService {
 
     public List<UOM> findAllValidUOMs(){return uomDao.findByIsValidIsTrue();}
 
-    public void updateUOMs(List<UOM> addUom, List<UOM> deleteUOM){
-        for(UOM uom: addUom)
+    public void updateUOMs(List<UOM> saveUom, List<UOM> deleteUOM){
+        for(UOM uom: saveUom)
             uomDao.save(uom);
 
         for(UOM uom: deleteUOM)
             uomDao.delete(uom);
     }
 
-    public void addUOM(UOM uom){ uomDao.save(uom);}
+    public void saveUOM(UOM uom){ uomDao.save(uom);}
 
     public void updateUOM(UOM uom){ uomDao.update(uom);}
 
@@ -130,15 +130,15 @@ public class AdminService {
         return serviceDao.find(id).getItems().stream().filter(item -> item.isValid()).collect(Collectors.toList());
     }
 
-    public void updateItems(List<Item> addItems, List<Item> deleteItems){
-        for(Item item: addItems)
+    public void updateItems(List<Item> saveItems, List<Item> deleteItems){
+        for(Item item: saveItems)
             itemDao.save(item);
 
         for(Item item: deleteItems)
             itemDao.delete(item);
     }
 
-    public void addItem(Item item){ itemDao.save(item);}
+    public void saveItem(Item item){ itemDao.save(item);}
 
     public void updateItem(Item item){ itemDao.update(item);}
 
@@ -152,15 +152,15 @@ public class AdminService {
 
     public List<Service> findAllValidServices(){return serviceDao.findByIsValidIsTrue();}
 
-    public void updateServices(List<Service> addServices, List<Service> deleteService){
-        for(Service service: addServices)
+    public void updateServices(List<Service> saveServices, List<Service> deleteService){
+        for(Service service: saveServices)
             serviceDao.save(service);
 
         for(Service service: deleteService)
             serviceDao.delete(service);
     }
 
-    public void addService(Service service){ serviceDao.save(service);}
+    public void saveService(Service service){ serviceDao.save(service);}
 
     public void updateService(Service service){ serviceDao.update(service);}
 
@@ -172,7 +172,7 @@ public class AdminService {
 
 
 
-    public Employee addEmployee(String name, String username, String password, int positionId){
+    public Employee saveEmployee(String name, String username, String password, int positionId){
         Account account=new Account(username, password);
         Employee employee=new Employee();
         employee.setName(name);

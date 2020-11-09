@@ -19,8 +19,8 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/position")
-    public void addPosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
-        adminService.addPosition(updateWrapper.getAdd());
+    public void savePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
+        adminService.savePosition(updateWrapper.getsave());
     }
 
     @PostMapping("/updatePosition")
@@ -40,9 +40,9 @@ public class AdminController {
 
     @PostMapping("/updatePositions")
     public void updatePositions(@Valid @RequestBody UpdateWrapper<Position> updateWrapper){
-//        List<Position> addPositions=updateWrapper.getAddList();
+//        List<Position> savePositions=updateWrapper.getsaveList();
 //        List<Position> deletePositions=updateWrapper.getDeleteList();
-        adminService.updatePositions(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updatePositions(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -51,8 +51,8 @@ public class AdminController {
 
 
     @PostMapping("/make")
-    public void addMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
-        adminService.addMake(updateWrapper.getAdd());
+    public void saveMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
+        adminService.saveMake(updateWrapper.getsave());
     }
 
     @PostMapping("/updateMake")
@@ -74,7 +74,7 @@ public class AdminController {
     http://localhost:8010/admin/updateMake
     request body:
         {
-            "addList":
+            "saveList":
             [
                 {"value":"gram"},
                 {"value":"kilogram"},
@@ -89,7 +89,7 @@ public class AdminController {
     */
     @PostMapping("/updateMakes")
     public void updateMakes(@Valid @RequestBody UpdateWrapper<Make> updateWrapper){
-        adminService.updateMakes(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updateMakes(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -99,8 +99,8 @@ public class AdminController {
 
 
     @PostMapping("/origin")
-    public void addOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
-        adminService.addOrigin(updateWrapper.getAdd());
+    public void saveOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
+        adminService.saveOrigin(updateWrapper.getsave());
     }
 
     @PostMapping("/updateOrigin")
@@ -120,7 +120,7 @@ public class AdminController {
 
     @PostMapping("/updateOrigins")
     public void updateOrigins(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper){
-        adminService.updateOrigins(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updateOrigins(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -130,8 +130,8 @@ public class AdminController {
 
 
     @PostMapping("/uom")
-    public void addUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
-        adminService.addUOM(updateWrapper.getAdd());
+    public void saveUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
+        adminService.saveUOM(updateWrapper.getsave());
     }
 
     @PostMapping("/updateUom")
@@ -151,7 +151,7 @@ public class AdminController {
 
     @PostMapping("/updateUOMs")
     public void updateUOMs(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper){
-        adminService.updateUOMs(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updateUOMs(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -161,8 +161,8 @@ public class AdminController {
 
 
     @PostMapping("/item")
-    public void addItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
-        adminService.addItem(updateWrapper.getAdd());
+    public void saveItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
+        adminService.saveItem(updateWrapper.getsave());
     }
 
     @PostMapping("/updateItem")
@@ -185,7 +185,7 @@ public class AdminController {
 
     @PostMapping("/updateItems")
     public void updateItems(@Valid @RequestBody UpdateWrapper<Item> updateWrapper){
-        adminService.updateItems(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updateItems(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -195,8 +195,8 @@ public class AdminController {
 
 
     @PostMapping("/service")
-    public void addService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
-        adminService.addService(updateWrapper.getAdd());
+    public void saveService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
+        adminService.saveService(updateWrapper.getsave());
     }
 
     @PostMapping("/updateService")
@@ -216,7 +216,7 @@ public class AdminController {
 
     @PostMapping("/updateServices")
     public void updateServices(@Valid @RequestBody UpdateWrapper<Service> updateWrapper){
-        adminService.updateServices(updateWrapper.getAddList(), updateWrapper.getDeleteList());
+        adminService.updateServices(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -236,12 +236,12 @@ public class AdminController {
        }
      */
     @PostMapping("/employee")
-    public Employee addEmployee(@Valid @RequestBody AdminWrapper adminWrapper){
+    public Employee saveEmployee(@Valid @RequestBody AdminWrapper adminWrapper){
         String name=adminWrapper.getName();
         String username=adminWrapper.getUsername();
         String password=adminWrapper.getPassword();
         int positionId=adminWrapper.getPositionId();
-        return adminService.addEmployee(name, username, password, positionId);
+        return adminService.saveEmployee(name, username, password, positionId);
     }
 
     @PostMapping("/updateEmployee")

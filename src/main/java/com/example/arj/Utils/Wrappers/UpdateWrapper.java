@@ -3,10 +3,10 @@ package com.example.arj.Utils.Wrappers;
 import java.util.List;
 
 public class UpdateWrapper<T> {
-    private T add;
+    private T save;
     private T update;
     private int deleteId;
-    private List<T> addList;
+    private List<T> saveList;
     private List<T> deleteList;
 
     public T getUpdate() {
@@ -25,20 +25,20 @@ public class UpdateWrapper<T> {
         this.deleteId = deleteId;
     }
 
-    public T getAdd() {
-        return add;
+    public T getsave() {
+        return save;
     }
 
-    public void setAdd(T add) {
-        this.add = add;
+    public void setsave(T save) {
+        this.save = save;
     }
 
-    public List<T> getAddList() {
-        return addList;
+    public List<T> getsaveList() {
+        return saveList;
     }
 
-    public void setAddList(List<T> addList) {
-        this.addList = addList;
+    public void setsaveList(List<T> saveList) {
+        this.saveList = saveList;
     }
 
     public List<T> getDeleteList() {
