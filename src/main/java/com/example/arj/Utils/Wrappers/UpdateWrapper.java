@@ -25,19 +25,19 @@ public class UpdateWrapper<T> {
         this.deleteId = deleteId;
     }
 
-    public T getsave() {
+    public T getSave() {
         return save;
     }
 
-    public void setsave(T save) {
+    public void setSave(T save) {
         this.save = save;
     }
 
-    public List<T> getsaveList() {
+    public List<T> getSaveList() {
         return saveList;
     }
 
-    public void setsaveList(List<T> saveList) {
+    public void setSaveList(List<T> saveList) {
         this.saveList = saveList;
     }
 

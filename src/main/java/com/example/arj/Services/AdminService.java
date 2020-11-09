@@ -45,9 +45,9 @@ public class AdminService {
             positionDao.delete(position);
     }
 
-    public void savePosition(Position position){ positionDao.save(position);}
+    public Position savePosition(Position position){ return positionDao.save(position);}
 
-    public void updatePosition(Position position){ positionDao.update(position);}
+    public Position updatePosition(Position position){ return positionDao.update(position);}
 
     public void deletePosition(int positionId){ positionDao.delete(positionId);}
 
@@ -67,9 +67,9 @@ public class AdminService {
             makeDao.delete(make);
     }
 
-    public void saveMake(Make make){ makeDao.save(make);}
+    public Make saveMake(Make make){ return makeDao.save(make);}
 
-    public void updateMake(Make make){ makeDao.update(make);}
+    public Make updateMake(Make make){ return makeDao.update(make);}
 
     public void deleteMake(int makeId){ makeDao.delete(makeId);}
 
@@ -89,9 +89,9 @@ public class AdminService {
             originDao.delete(origin);
     }
 
-    public void saveOrigin(Origin origin){ originDao.save(origin);}
+    public Origin saveOrigin(Origin origin){ return originDao.save(origin);}
 
-    public void updateOrigin(Origin origin){ originDao.update(origin);}
+    public Origin updateOrigin(Origin origin){ return originDao.update(origin);}
 
     public void deleteOrigin(int originId){ originDao.delete(originId);}
 
@@ -111,9 +111,9 @@ public class AdminService {
             uomDao.delete(uom);
     }
 
-    public void saveUOM(UOM uom){ uomDao.save(uom);}
+    public UOM saveUOM(UOM uom){ return uomDao.save(uom);}
 
-    public void updateUOM(UOM uom){ uomDao.update(uom);}
+    public UOM updateUOM(UOM uom){ return uomDao.update(uom);}
 
     public void deleteUOM(int uomId){ uomDao.delete(uomId);}
 
@@ -138,9 +138,9 @@ public class AdminService {
             itemDao.delete(item);
     }
 
-    public void saveItem(Item item){ itemDao.save(item);}
+    public Item saveItem(Item item){ return itemDao.save(item);}
 
-    public void updateItem(Item item){ itemDao.update(item);}
+    public Item updateItem(Item item){ return itemDao.update(item);}
 
     public void deleteItem(int itemId){ itemDao.delete(itemId);}
 
@@ -160,9 +160,9 @@ public class AdminService {
             serviceDao.delete(service);
     }
 
-    public void saveService(Service service){ serviceDao.save(service);}
+    public Service saveService(Service service){ return serviceDao.save(service);}
 
-    public void updateService(Service service){ serviceDao.update(service);}
+    public Service updateService(Service service){ return serviceDao.update(service);}
 
     public void deleteService(int serviceId){ serviceDao.delete(serviceId);}
 
@@ -183,7 +183,7 @@ public class AdminService {
 
     public void deleteEmployee(int employeeId){ employeeDao.delete(employeeId);}
 
-    public void updateEmployee(Employee employee){ employeeDao.update(employee);}
+    public Employee updateEmployee(Employee employee){ return employeeDao.update(employee);}
 
 
 
@@ -201,5 +201,5 @@ public class AdminService {
         return projectDao.save(project);
     }
 
-    public void updateProject(Project project){ projectDao.update(project);}
+    public Project updateProject(Project project){ return projectDao.update(project);}
 }

@@ -115,4 +115,17 @@ public class Position {
 
     public Position() {
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", hierarchy=" + hierarchy +
+                ", isValid=" + isValid +
+                ", canCreate=" + canCreate +
+                ", canEnd=" + canEnd +
+                '}';
+    }
 }

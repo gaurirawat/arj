@@ -19,16 +19,17 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/position")
-    public void savePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
-        adminService.savePosition(updateWrapper.getsave());
+    public Position savePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
+        return adminService.savePosition(updateWrapper.getSave());
     }
 
     @PostMapping("/updatePosition")
-    public void updatePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
-        adminService.updatePosition(updateWrapper.getUpdate());
+    public Position updatePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
+        System.out.println(updateWrapper.getUpdate().toString());
+        return adminService.updatePosition(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/position")
+    @PostMapping("/deletePosition")
     public void deletePosition(@Valid @RequestBody UpdateWrapper<Position> updateWrapper) {
         adminService.deletePosition(updateWrapper.getDeleteId());
     }
@@ -40,9 +41,9 @@ public class AdminController {
 
     @PostMapping("/updatePositions")
     public void updatePositions(@Valid @RequestBody UpdateWrapper<Position> updateWrapper){
-//        List<Position> savePositions=updateWrapper.getsaveList();
+//        List<Position> savePositions=updateWrapper.getSaveList();
 //        List<Position> deletePositions=updateWrapper.getDeleteList();
-        adminService.updatePositions(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updatePositions(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -51,16 +52,16 @@ public class AdminController {
 
 
     @PostMapping("/make")
-    public void saveMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
-        adminService.saveMake(updateWrapper.getsave());
+    public Make saveMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
+        return adminService.saveMake(updateWrapper.getSave());
     }
 
     @PostMapping("/updateMake")
-    public void updateMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
-        adminService.updateMake(updateWrapper.getUpdate());
+    public Make updateMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
+        return adminService.updateMake(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/make")
+    @PostMapping("/deleteMake")
     public void deleteMake(@Valid @RequestBody UpdateWrapper<Make> updateWrapper) {
         adminService.deleteMake(updateWrapper.getDeleteId());
     }
@@ -89,7 +90,7 @@ public class AdminController {
     */
     @PostMapping("/updateMakes")
     public void updateMakes(@Valid @RequestBody UpdateWrapper<Make> updateWrapper){
-        adminService.updateMakes(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updateMakes(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -99,16 +100,16 @@ public class AdminController {
 
 
     @PostMapping("/origin")
-    public void saveOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
-        adminService.saveOrigin(updateWrapper.getsave());
+    public Origin saveOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
+        return adminService.saveOrigin(updateWrapper.getSave());
     }
 
     @PostMapping("/updateOrigin")
-    public void updateOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
-        adminService.updateOrigin(updateWrapper.getUpdate());
+    public Origin updateOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
+        return adminService.updateOrigin(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/origin")
+    @PostMapping("/deleteOrigin")
     public void deleteOrigin(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper) {
         adminService.deleteOrigin(updateWrapper.getDeleteId());
     }
@@ -120,7 +121,7 @@ public class AdminController {
 
     @PostMapping("/updateOrigins")
     public void updateOrigins(@Valid @RequestBody UpdateWrapper<Origin> updateWrapper){
-        adminService.updateOrigins(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updateOrigins(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -130,16 +131,16 @@ public class AdminController {
 
 
     @PostMapping("/uom")
-    public void saveUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
-        adminService.saveUOM(updateWrapper.getsave());
+    public UOM saveUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
+        return adminService.saveUOM(updateWrapper.getSave());
     }
 
     @PostMapping("/updateUom")
-    public void updateUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
-        adminService.updateUOM(updateWrapper.getUpdate());
+    public UOM updateUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
+        return adminService.updateUOM(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/uom")
+    @PostMapping("/deleteUom")
     public void deleteUOM(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper) {
         adminService.deleteUOM(updateWrapper.getDeleteId());
     }
@@ -151,7 +152,7 @@ public class AdminController {
 
     @PostMapping("/updateUOMs")
     public void updateUOMs(@Valid @RequestBody UpdateWrapper<UOM> updateWrapper){
-        adminService.updateUOMs(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updateUOMs(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -161,16 +162,16 @@ public class AdminController {
 
 
     @PostMapping("/item")
-    public void saveItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
-        adminService.saveItem(updateWrapper.getsave());
+    public Item saveItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
+        return adminService.saveItem(updateWrapper.getSave());
     }
 
     @PostMapping("/updateItem")
-    public void updateItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
-        adminService.updateItem(updateWrapper.getUpdate());
+    public Item updateItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
+        return adminService.updateItem(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/item")
+    @PostMapping("/deleteItem")
     public void deleteItem(@Valid @RequestBody UpdateWrapper<Item> updateWrapper) {
         adminService.deleteItem(updateWrapper.getDeleteId());
     }
@@ -185,7 +186,7 @@ public class AdminController {
 
     @PostMapping("/updateItems")
     public void updateItems(@Valid @RequestBody UpdateWrapper<Item> updateWrapper){
-        adminService.updateItems(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updateItems(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -195,16 +196,16 @@ public class AdminController {
 
 
     @PostMapping("/service")
-    public void saveService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
-        adminService.saveService(updateWrapper.getsave());
+    public Service saveService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
+        return adminService.saveService(updateWrapper.getSave());
     }
 
     @PostMapping("/updateService")
-    public void updateService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
-        adminService.updateService(updateWrapper.getUpdate());
+    public Service updateService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
+        return adminService.updateService(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/service")
+    @PostMapping("/deleteService")
     public void deleteService(@Valid @RequestBody UpdateWrapper<Service> updateWrapper) {
         adminService.deleteService(updateWrapper.getDeleteId());
     }
@@ -216,7 +217,7 @@ public class AdminController {
 
     @PostMapping("/updateServices")
     public void updateServices(@Valid @RequestBody UpdateWrapper<Service> updateWrapper){
-        adminService.updateServices(updateWrapper.getsaveList(), updateWrapper.getDeleteList());
+        adminService.updateServices(updateWrapper.getSaveList(), updateWrapper.getDeleteList());
     }
 
 
@@ -245,11 +246,11 @@ public class AdminController {
     }
 
     @PostMapping("/updateEmployee")
-    public void updateEmployee(@Valid @RequestBody UpdateWrapper<Employee> updateWrapper) {
-        adminService.updateEmployee(updateWrapper.getUpdate());
+    public Employee updateEmployee(@Valid @RequestBody UpdateWrapper<Employee> updateWrapper) {
+        return adminService.updateEmployee(updateWrapper.getUpdate());
     }
 
-    @DeleteMapping("/employee")
+    @PostMapping("/deleteEmployee")
     public void deleteEmployee(@Valid @RequestBody UpdateWrapper<Employee> updateWrapper) {
         adminService.deleteEmployee(updateWrapper.getDeleteId());
     }
