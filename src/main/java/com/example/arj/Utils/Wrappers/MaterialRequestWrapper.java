@@ -100,4 +100,21 @@ public class MaterialRequestWrapper {
     public void setItemMRMappingWrappers(List<ItemMRMappingWrapper> itemMRMappingWrappers) {
         this.itemMRMappingWrappers = itemMRMappingWrappers;
     }
+
+    @Override
+    public String toString() {
+        return "MaterialRequestWrapper{" +
+                "areaFloor='" + areaFloor + '\'' +
+                ", remark='" + remark + '\'' +
+                ", instruction='" + instruction + '\'' +
+                ", doRequiredDelivery=" + doRequiredDelivery +
+                ", serviceId=" + serviceId +
+                ", projectId=" + projectId +
+                ", raisedById=" + raisedById +
+                ", employeeId=" + employeeId +
+                ", materialRequestId=" + materialRequestId +
+                ", itemMRMappingWrappers=" + itemMRMappingWrappers +
+                '}';
+    }
+
 }

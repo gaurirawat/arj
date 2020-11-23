@@ -110,6 +110,42 @@ upload/download of files using file system:
 https://devwithus.com/download-upload-files-with-spring-boot/
 https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
 
+Home variable for systems:
+https://stackoverflow.com/questions/585534/what-is-the-best-way-to-find-the-users-home-directory-in-java
+
+not propagating CascadePersit in MR-PO:
+https://medium.com/@rajibrath20/the-best-way-to-map-a-onetomany-relationship-with-jpa-and-hibernate-dbbf6dba00d3
+https://www.baeldung.com/jpa-joincolumn-vs-mappedby#:~:text=In%20a%20One%2Dto%2DMany%2FMany%2Dto%2D,which%20owns%20the%20foreign%20key.&text=It%20simply%20means%20that%20our,id%20of%20our%20Employee%20entity.
+
+NoSuchFileException:
+https://stackoverflow.com/questions/30735735/nosuchfileexception-when-creating-a-file-using-nio
+
+Multipart file received along with other properties:
+- multipart files, if sent with Formdata then they are part of request and and not request body so we need to use @RequestParam and @RequestBody won't work
+Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'multipart/form-data;boundary=---------------------------326751457732457237941816297853;charset=UTF-8' not supported]
+when received using @RequestBody
+- so basically Multipart file is along with json data won't be directly converted to Model by @RequestBody
+https://stackoverflow.com/questions/25699727/multipart-file-upload-spring-boot
+
+Convert Entity mixture of multipart file and json data:
+- Use @ModelAttribute
+https://stackoverflow.com/questions/49845355/spring-boot-controller-upload-multipart-and-json-to-dto
+
+download file:
+anchor tag with download attribute will download the file from the href
+https://stackoverflow.com/questions/56287701/octet-stream-on-angular-file-download-not-working
+other way:
+https://stackoverflow.com/questions/56320842/how-to-download-a-file-in-angular-which-is-received-as-application-octet-stream
+
+Something about content-type:
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#:~:text=The%20Content%2DType%20entity%20header,the%20returned%20content%20actually%20is.&text=In%20requests%2C%20(such%20as%20POST,of%20data%20is%20actually%20sent.
+
+How to return a file for downloading to client:
+- Use of content-decomposition header
+https://stackoverflow.com/questions/35030479/spring-get-response-as-multipart-file-from-rest-webservice
+https://stackoverflow.com/questions/35680932/download-a-file-from-spring-boot-rest-service
+https://stackoverflow.com/questions/12239868/whats-the-correct-way-to-send-a-file-from-rest-web-service-to-client?noredirect=1&lq=1
+https://stackoverflow.com/questions/10100936/file-downloading-in-restful-web-services
 
 1.add dependency
 2.enable annotation from file-> annotation processor-> enable processor:

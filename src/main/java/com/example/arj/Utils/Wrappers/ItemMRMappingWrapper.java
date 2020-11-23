@@ -14,6 +14,7 @@ public class ItemMRMappingWrapper {
         this.quantity = quantity;
     }
 
+
     public int getItemId() {
         return itemId;
     }
@@ -36,5 +37,15 @@ public class ItemMRMappingWrapper {
 
     public void setOriginId(int originId) {
         this.originId = originId;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemMRMappingWrapper{" +
+                "quantity=" + quantity +
+                ", itemId=" + itemId +
+                ", makeId=" + makeId +
+                ", originId=" + originId +
+                '}';
     }
 }

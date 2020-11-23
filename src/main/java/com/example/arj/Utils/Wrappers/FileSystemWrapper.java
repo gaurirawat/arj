@@ -7,6 +7,8 @@ import java.io.File;
 public class FileSystemWrapper {
     private int materialRequestId;
     private int purchaseOrderId;
+
+
     private MultipartFile file;
 //    private File file;
     private String test;
@@ -50,4 +52,13 @@ public class FileSystemWrapper {
 //    public void setFile(File file) {
 //        this.file = file;
 //    }
+    @Override
+    public String toString() {
+        return "FileSystemWrapper{" +
+                "materialRequestId=" + materialRequestId +
+                ", purchaseOrderId=" + purchaseOrderId +
+                ", file=" + file +
+                ", test='" + test + '\'' +
+                '}';
+    }
 }

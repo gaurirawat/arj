@@ -17,10 +17,10 @@ public class PurchaseOrder {
     @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-//    @ManyToOne(cascade ={CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "materialRequestId")
-//    @JsonIgnoreProperties(value = {"purchaseOrders", "hibernateLazyInitializer"}, allowSetters = true)
-//    private MaterialRequest materialRequest;
+    @ManyToOne(cascade ={CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "materialRequestId")
+    @JsonIgnoreProperties(value = {"purchaseOrders", "hibernateLazyInitializer"}, allowSetters = true)
+    private MaterialRequest materialRequest;
 
     private String path;
 
@@ -32,13 +32,13 @@ public class PurchaseOrder {
         this.id = id;
     }
 
-//    public MaterialRequest getMaterialRequest() {
-//        return materialRequest;
-//    }
-//
-//    public void setMaterialRequest(MaterialRequest materialRequest) {
-//        this.materialRequest = materialRequest;
-//    }
+    public MaterialRequest getMaterialRequest() {
+        return materialRequest;
+    }
+
+    public void setMaterialRequest(MaterialRequest materialRequest) {
+        this.materialRequest = materialRequest;
+    }
 
     public String getPath() {
         return path;

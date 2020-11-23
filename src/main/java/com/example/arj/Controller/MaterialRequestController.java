@@ -2,10 +2,7 @@ package com.example.arj.Controller;
 
 import com.example.arj.DAO.EmployeeDao;
 import com.example.arj.DAO.MaterialRequestDao;
-import com.example.arj.Models.Employee;
-import com.example.arj.Models.ItemMRMapping;
-import com.example.arj.Models.MaterialRequest;
-import com.example.arj.Models.Project;
+import com.example.arj.Models.*;
 import com.example.arj.Services.MaterialRequestService;
 import com.example.arj.Utils.Wrappers.ItemMRMappingWrapper;
 import com.example.arj.Utils.Wrappers.MaterialRequestWrapper;
@@ -30,6 +27,7 @@ public class MaterialRequestController {
 
     @PostMapping("/create")
     public MaterialRequest createMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
+        System.out.println(materialRequestWrapper.toString());
         String areaFloor=materialRequestWrapper.getAreaFloor();
         Date doRequiredDelivery=materialRequestWrapper.getDoRequiredDelivery();
         String instruction= materialRequestWrapper.getInstruction();
@@ -56,8 +54,8 @@ public class MaterialRequestController {
     }
 
     @GetMapping("/findAllProcessedMaterialRequest")
-    public List<MaterialRequest> findAllProcessedMaterialRequest(@RequestParam Integer id){
-        return materialRequestService.findAllProcessedMaterialRequest(id);
+    public List<MaterialRequest> findAllProcessedMaterialRequest(@RequestParam Integer employeeId){
+        return materialRequestService.findAllProcessedMaterialRequest(employeeId);
     }
 
     @GetMapping("/project")
@@ -65,8 +63,14 @@ public class MaterialRequestController {
         return materialRequestService.findAssignedProjects(employeeId);
     }
 
-    @GetMapping("/pending")
+    @GetMapping("/findAllPendingMaterialRequests")
     public List<MaterialRequest> findAllPendingMaterialRequests(@RequestParam int employeeId){
         return materialRequestService.findAllPendingMaterialRequests(employeeId);
     }
+
+    @GetMapping("getPurchaseOrders")
+    public List<PurchaseOrder> findAllPurchaseOrdersByMaterialRequest(@RequestParam Integer materialRequestId){
+        return materialRequestService.findAllPurchaseOrdersByMaterialRequest(materialRequestId);
+    }
+
 }

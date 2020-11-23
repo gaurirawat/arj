@@ -24,9 +24,9 @@ public class Service {
     @JsonIgnoreProperties(value = {"service", "hibernateLazyInitializer"}, allowSetters = true)
     private List<Item> items;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "service")
-    @JsonIgnoreProperties(value = {"service", "hibernateLazyInitializer"}, allowSetters = true)
-    private List<MaterialRequest> materialRequests;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "service")
+//    @JsonIgnoreProperties(value = {"service", "hibernateLazyInitializer"}, allowSetters = true)
+//    private List<MaterialRequest> materialRequests;
 
     @Column(nullable = false)
     private String name;
@@ -53,13 +53,13 @@ public class Service {
         this.items = items;
     }
 
-    public List<MaterialRequest> getMaterialRequests() {
-        return materialRequests;
-    }
-
-    public void setMaterialRequests(List<MaterialRequest> materialRequests) {
-        this.materialRequests = materialRequests;
-    }
+//    public List<MaterialRequest> getMaterialRequests() {
+//        return materialRequests;
+//    }
+//
+//    public void setMaterialRequests(List<MaterialRequest> materialRequests) {
+//        this.materialRequests = materialRequests;
+//    }
 
     public String getName() {
         return name;

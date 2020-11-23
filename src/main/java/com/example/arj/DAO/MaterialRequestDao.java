@@ -1,6 +1,7 @@
 package com.example.arj.DAO;
 
 import com.example.arj.Models.MaterialRequest;
+import com.example.arj.Models.PurchaseOrder;
 import com.example.arj.Repositories.MaterialRequestRepository;
 import com.example.arj.Utils.Enums.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,9 @@ public class MaterialRequestDao implements Dao<MaterialRequest> {
 
     public List<MaterialRequest> findByRaisedBy(Integer id){
         return materialRequestRepository.findByRaisedBy_Id(id);
+    }
+
+    public List<PurchaseOrder> findAllPurchaseOrdersByMaterialRequest(Integer id){
+        return materialRequestRepository.getOne(id).getPurchaseOrders();
     }
 }

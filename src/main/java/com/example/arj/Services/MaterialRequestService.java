@@ -68,6 +68,7 @@ public class MaterialRequestService {
             itemMRMapping.setOrigin(originDao.find(itemMRMappingWrapper.getOriginId()));
             itemMRMapping.setMake(makeDao.find(itemMRMappingWrapper.getMakeId()));
             itemMRMapping.setItem(itemDao.find(itemMRMappingWrapper.getItemId()));
+            itemMRMapping.setQuantity(itemMRMappingWrapper.getQuantity());
             itemMRMapping.setMaterialRequest(materialRequest);
             itemMRMappingDao.save(itemMRMapping);
         }
@@ -115,6 +116,11 @@ public class MaterialRequestService {
             if(!projects.get(i).isValid()){
                 projects.remove(projects.get(i));
                 --i;
+            }
+            else{
+                //removing unnecessary fields from the data
+                projects.get(i).setMaterialRequests(null);
+                projects.get(i).setPes(null);
             }
         }
         return projects;
@@ -176,5 +182,9 @@ public class MaterialRequestService {
         }
         //All MRs which are closed for now
         return materialRequestDao.findByStatus(StatusEnum.CLOSE);
+    }
+
+    public List<PurchaseOrder> findAllPurchaseOrdersByMaterialRequest(Integer id){
+        return materialRequestDao.findAllPurchaseOrdersByMaterialRequest(id);
     }
 }

@@ -7,6 +7,7 @@ import com.example.arj.Utils.Exceptions.FileException;
 import com.example.arj.Utils.Wrappers.FileSystemWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,27 +22,27 @@ public class FileSystemController{
     @Autowired
     FileSystemService fileSystemService;
 
-    @GetMapping("/test")
-    public void test(){
-        fileSystemService.test();
+    @PostMapping("/test")
+    public boolean test(@ModelAttribute FileSystemWrapper fileSystemWrapper){
+        return fileSystemService.test(fileSystemWrapper);
     }
 
     @PostMapping("/upload")
-    public boolean uploadFile(@RequestParam("file") MultipartFile multipartFile){
-//        int materialRequestId=fileSystemWrapper.getMaterialRequestId();
+    public boolean uploadFile(@ModelAttribute FileSystemWrapper fileSystemWrapper){
+        int materialRequestId=fileSystemWrapper.getMaterialRequestId();
 //        System.out.println(materialRequestId);
 //        return true;
 //        File file=fileSystemWrapper.getFile();
-//        MultipartFile multipartFile=fileSystemWrapper.getFile();
-        int materialRequestId=1;
+        MultipartFile multipartFile=fileSystemWrapper.getFile();
+//        int materialRequestId=1;
         System.out.println(multipartFile.getOriginalFilename());
         System.out.println(materialRequestId);
         return fileSystemService.uploadFile(multipartFile,materialRequestId);
     }
 
-    @GetMapping
-    public Resource downloadFile(@RequestBody FileSystemWrapper fileSystemWrapper){
-        int purchaseOrderId = fileSystemWrapper.getPurchaseOrderId();
+    @GetMapping("/getPo")
+    public ResponseEntity<Resource> downloadFile(@RequestParam Integer purchaseOrderId){
+//        System.out.println("came hrer!");
         return fileSystemService.downloadFile(purchaseOrderId);
     }
 

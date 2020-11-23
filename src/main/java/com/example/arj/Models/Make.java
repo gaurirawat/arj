@@ -16,10 +16,10 @@ public class Make {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "make")
-    @JsonIgnoreProperties(value = {"make", "hibernateLazyInitializer"}, allowSetters = true)
-    private List<ItemMRMapping> itemMRMappings;
+//    unnecessary data, not required at all
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "make")
+//    @JsonIgnoreProperties(value = {"make", "hibernateLazyInitializer"}, allowSetters = true)
+//    private List<ItemMRMapping> itemMRMappings;
 
     @Column(nullable = false)
     private boolean isValid = true;
@@ -34,13 +34,13 @@ public class Make {
         this.id = id;
     }
 
-    public List<ItemMRMapping> getItemMRMappings() {
-        return itemMRMappings;
-    }
-
-    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
-        this.itemMRMappings = itemMRMappings;
-    }
+//    public List<ItemMRMapping> getItemMRMappings() {
+//        return itemMRMappings;
+//    }
+//
+//    public void setItemMRMappings(List<ItemMRMapping> itemMRMappings) {
+//        this.itemMRMappings = itemMRMappings;
+//    }
 
     public String getValue() {
         return value;

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,7 +69,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         //to add token to the header
 //        res.addHeader("token", token);
 //        Cookie cookie = new Cookie(HEADER_NAME,token);
-////        cookie.setDomain("localhost.com");
+//        cookie.setDomain("localhost.com");
 //        cookie.setSecure(false);
 //        cookie.setPath("/");
 //        cookie.setMaxAge(30*60);
@@ -76,6 +77,15 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 //        cookie.se
 //        cookie.setHttpOnly(true);   //only accessible by server and not javascript to avoid cross site scripting(XSS) attack
         res.setHeader("Set-Cookie",HEADER_NAME+"="+token+";SameSite=None;Secure;Max-Age=1800000;");
+
+//        PrintWriter out = res.getWriter();
+//        ObjectMapper objectMapper= new ObjectMapper();
+//        String jsonString = objectMapper.writeValueAsString(MyObject);
+//        response.setContentType("application/json");
+//        response.setCharacterEncoding("UTF-8");
+//        out.print(jsonString);
+//        out.flush();
+
     }
 
 }
