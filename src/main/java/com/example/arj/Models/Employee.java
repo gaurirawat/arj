@@ -19,7 +19,7 @@ public class Employee {
     @Column(unique = true, nullable = false, updatable = false)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "positionId")
     @JsonIgnoreProperties(value = {"employees", "transactions","hibernateLazyInitializer"}, allowSetters = true)
     private Position position;
@@ -110,11 +110,11 @@ public class Employee {
         this.name = name;
     }
 
-    public boolean isValid() {
+    public boolean getIsValid() {
         return isValid;
     }
 
-    public void setValid(boolean valid) {
+    public void setIsValid(boolean valid) {
         isValid = valid;
     }
 

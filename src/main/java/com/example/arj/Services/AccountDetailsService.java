@@ -2,6 +2,7 @@ package com.example.arj.Services;
 
 import com.example.arj.DAO.AccountDao;
 import com.example.arj.Models.Account;
+import com.example.arj.Models.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
@@ -23,7 +25,8 @@ public class AccountDetailsService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-     @Override
+    @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = accountDao.findByUsername(username);
 
@@ -32,6 +35,7 @@ public class AccountDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
         //Creating user of type compatible with boot-security auths
-        return new User(account.getUsername(), bCryptPasswordEncoder.encode(account.getPassword()), Collections.emptyList());
+        return new CustomUser(account.getUsername(), bCryptPasswordEncoder.encode(account.getPassword()), Collections.emptyList(),account.getEmployee(),account.getEmployee().getPosition());
+//        return new User(account.getUsername(), bCryptPasswordEncoder.encode(account.getPassword()), Collections.emptyList());
     }
 }

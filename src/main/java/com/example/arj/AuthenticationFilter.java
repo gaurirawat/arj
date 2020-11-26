@@ -1,10 +1,13 @@
 package com.example.arj;
 
 import com.example.arj.Models.Account;
+import com.example.arj.Models.CustomUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -62,7 +65,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 //        Key key = Keys.hmacShaKeyFor(KEY.getBytes());
         byte[] apiKeySecretBytes =  DatatypeConverter.parseBase64Binary(KEY);
         Key key = new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS256.getJcaName());
-        Claims claims = Jwts.claims().setSubject(((User) auth.getPrincipal()).getUsername());
+        Claims claims = Jwts.claims().setSubject(((CustomUser) auth.getPrincipal()).getUsername());
         String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512,key).setExpiration(exp).compact();
 //        String token = ((User)auth.getPrincipal()).getUsername()+":token";
 
@@ -78,13 +81,25 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 //        cookie.setHttpOnly(true);   //only accessible by server and not javascript to avoid cross site scripting(XSS) attack
         res.setHeader("Set-Cookie",HEADER_NAME+"="+token+";SameSite=None;Secure;Max-Age=1800000;");
 
-//        PrintWriter out = res.getWriter();
-//        ObjectMapper objectMapper= new ObjectMapper();
-//        String jsonString = objectMapper.writeValueAsString(MyObject);
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//        out.print(jsonString);
-//        out.flush();
+        PrintWriter out = res.getWriter();
+        ObjectMapper objectMapper= new ObjectMapper();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("employeeId",((CustomUser) auth.getPrincipal()).getEmployee().getId());
+            jsonObject.put("name",((CustomUser) auth.getPrincipal()).getEmployee().getName());
+            jsonObject.put("username",((CustomUser) auth.getPrincipal()).getUsername());
+            jsonObject.put("hierarchy",((CustomUser) auth.getPrincipal()).getPosition().getHierarchy());
+            jsonObject.put("rolename",((CustomUser) auth.getPrincipal()).getPosition().getName());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        String jsonString = objectMapper.writeValueAsString(((CustomUser) auth.getPrincipal()).getEmployee());
+
+
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+        out.print(jsonObject.toString());
+        out.flush();
 
     }
 

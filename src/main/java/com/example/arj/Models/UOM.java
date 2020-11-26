@@ -50,11 +50,11 @@ public class UOM {
         this.unit = unit;
     }
 
-    public boolean isValid() {
+    public boolean getIsValid() {
         return isValid;
     }
 
-    public void setValid(boolean valid) {
+    public void setIsValid(boolean valid) {
         isValid = valid;
     }
 

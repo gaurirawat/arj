@@ -35,13 +35,13 @@ public class UOMDao implements Dao<UOM> {
 
     public void delete(UOM uomD){
         UOM uom=uomRepository.getOne(uomD.getId());
-        uom.setValid(false);
+        uom.setIsValid(false);
         uomRepository.save(uom);
     }
 
     public void delete(Integer id){
         UOM uom=uomRepository.getOne(id);
-        uom.setValid(false);
+        uom.setIsValid(false);
         uomRepository.save(uom);
     }
 }

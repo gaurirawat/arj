@@ -40,13 +40,13 @@ public class OriginDao implements Dao<Origin> {
 
     public void delete(Origin originD) {
         Origin origin= originRepository.getOne(originD.getId());
-        origin.setValid(false);
+        origin.setIsValid(false);
         originRepository.save(origin);
     }
 
     public void delete(Integer id) {
         Origin origin= originRepository.getOne(id);
-        origin.setValid(false);
+        origin.setIsValid(false);
         originRepository.save(origin);
     }
 }

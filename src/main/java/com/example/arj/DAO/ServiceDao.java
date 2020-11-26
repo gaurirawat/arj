@@ -51,13 +51,13 @@ public class ServiceDao implements Dao<Service> {
 
     public void delete(Service serviceD) {
         Service service=serviceRepository.getOne(serviceD.getId());
-        service.setValid(false);
+        service.setIsValid(false);
         serviceRepository.save(service);
     }
 
     public void delete(Integer id) {
         Service service=serviceRepository.getOne(id);
-        service.setValid(false);
+        service.setIsValid(false);
         serviceRepository.save(service);
     }
 }

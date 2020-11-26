@@ -45,13 +45,13 @@ public class PositionDao implements Dao<Position> {
 
     public void delete(Position positionD) {
         Position position=positionRepository.getOne(positionD.getId());
-        position.setValid(false);
+        position.setIsValid(false);
         positionRepository.save(position);
     }
 
     public void delete(Integer id) {
         Position position=positionRepository.getOne(id);
-        position.setValid(false);
+        position.setIsValid(false);
         positionRepository.save(position);
     }
 }

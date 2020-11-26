@@ -50,13 +50,18 @@ public class Origin {
         this.value = value;
     }
 
-    public boolean isValid() {
-        return isValid;
-    }
+//    public boolean isValid() {
+//        return isValid;
+//    }
+//
+//    public void setValid(boolean valid) {
+//        isValid = valid;
+//    }
 
-    public void setValid(boolean valid) {
-        isValid = valid;
-    }
+    public boolean getIsValid(){ return isValid;}
+
+    public void setIsValid(boolean isValid){ this.isValid = isValid;}
+
 
     public Origin() {
     }

@@ -46,13 +46,13 @@ public class ItemDao implements Dao<Item> {
 
     public void delete(Item itemD) {
         Item item= itemRepository.getOne(itemD.getId());
-        item.setValid(false);
+        item.setIsValid(false);
         itemRepository.save(item);
     }
 
     public void delete(Integer id) {
         Item item= itemRepository.getOne(id);
-        item.setValid(false);
+        item.setIsValid(false);
         itemRepository.save(item);
     }
 }

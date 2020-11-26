@@ -69,7 +69,7 @@ public class AdminService {
 
     public Make saveMake(Make make){ return makeDao.save(make);}
 
-    public Make updateMake(Make make){ return makeDao.update(make);}
+    public Make updateMake(Make make){return makeDao.update(make);}
 
     public void deleteMake(int makeId){ makeDao.delete(makeId);}
 
@@ -127,7 +127,7 @@ public class AdminService {
 
     public List<Item> findAllValidItemsByServiceId(Integer id){
 //        Getting all the item of service ID and filtering with validation.
-        return serviceDao.find(id).getItems().stream().filter(item -> item.isValid()).collect(Collectors.toList());
+        return serviceDao.find(id).getItems().stream().filter(item -> item.getIsValid()).collect(Collectors.toList());
     }
 
     public void updateItems(List<Item> saveItems, List<Item> deleteItems){

@@ -3,6 +3,10 @@ Why DAO?
 - service is to handle ugly business logic and separate it from our endpoints
 - DAO is for accessing data models and do CRUD hence it will decouple business logic and access layer so they can grow independently.
 
+Changing all getter/setter of getValid and setValid to getIsValid and setIsValid:
+- as they are sending `valid` as a column in front-end.
+- need to update as they will expect `valid` as a column name for serialization.
+
 Optional:
 - Is to establish that there can be no value to return and method will make explicit check everytime we use it so to avoid nullPointer exception.
 - https://www.baeldung.com/java-optional-return
@@ -81,7 +85,6 @@ https://github.com/js-cookie/js-cookie/issues/247#issuecomment-567832007
 
 - invalid host-header and hosting angular on different domains
 https://help.crossbrowsertesting.com/faqs/testing/invalid-host-header-error/
-blueberry cheesecake:
 
 filter and streams:
 
@@ -137,6 +140,17 @@ https://stackoverflow.com/questions/56287701/octet-stream-on-angular-file-downlo
 other way:
 https://stackoverflow.com/questions/56320842/how-to-download-a-file-in-angular-which-is-received-as-application-octet-stream
 
+send back User data back on successful authentication:
+-to get data on handler
+https://stackoverflow.com/questions/35241182/spring-boot-return-user-object-after-log-in/35242031
+-to append it to response
+https://stackoverflow.com/questions/2010990/how-do-you-return-a-json-object-from-a-java-servlet
+https://stackoverflow.com/questions/11587001/creating-json-string-using-jsonobject-and-jsonarray
+
+LazyInitialization- No session exception:
+https://www.baeldung.com/hibernate-initialize-proxy-exception
+https://stackoverflow.com/questions/39054193/lazyinitializationexception-in-hibernate-could-not-initialize-proxy-no-sessi/39071635
+
 Something about content-type:
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#:~:text=The%20Content%2DType%20entity%20header,the%20returned%20content%20actually%20is.&text=In%20requests%2C%20(such%20as%20POST,of%20data%20is%20actually%20sent.
 
@@ -153,3 +167,6 @@ https://stackoverflow.com/questions/33483697/re-run-spring-boot-configuration-an
 https://stackoverflow.com/questions/42839126/configurationproperties-spring-boot-configuration-annotation-processor-not-foun
 
 https://www.programmersought.com/article/7364470735/
+
+Why isValid gets Default value(True) evry time while deserializing POJO from front end:
+https://stackoverflow.com/questions/21913955/json-post-request-for-boolean-field-sends-false-by-default

@@ -45,6 +45,20 @@ public class MaterialRequestController {
         materialRequestService.approveMaterialRequest(employeeId,materialRequestId);
     }
 
+    @PostMapping("/close")
+    public void closeMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
+        int employeeId=materialRequestWrapper.getEmployeeId();
+        int materialRequestId=materialRequestWrapper.getMaterialRequestId();
+        materialRequestService.closeMaterialRequest(employeeId,materialRequestId);
+    }
+
+    @PostMapping("/reopen")
+    public void reopenMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
+        int employeeId=materialRequestWrapper.getEmployeeId();
+        int materialRequestId=materialRequestWrapper.getMaterialRequestId();
+        materialRequestService.reopenMaterialRequest(employeeId,materialRequestId);
+    }
+
     @PostMapping("/decline")
     public void declineMaterialRequest(@Valid @RequestBody MaterialRequestWrapper materialRequestWrapper){
         int employeeId=materialRequestWrapper.getEmployeeId();

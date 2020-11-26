@@ -46,13 +46,13 @@ public class EmployeeDao implements Dao<Employee> {
 
     public void delete(Employee employeeD) {
         Employee employee= employeeRepository.getOne(employeeD.getId());
-        employee.setValid(false);
+        employee.setIsValid(false);
         employeeRepository.save(employee);
     }
 
     public void delete(Integer id) {
         Employee employee= employeeRepository.getOne(id);
-        employee.setValid(false);
+        employee.setIsValid(false);
         employeeRepository.save(employee);
     }
 }

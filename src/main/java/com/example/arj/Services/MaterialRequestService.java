@@ -93,6 +93,20 @@ public class MaterialRequestService {
         logTransaction(ActionEnum.APPROVE, employee, materialRequest);
     }
 
+    public void closeMaterialRequest(int employeeId, int materialRequestId){
+        Employee employee = employeeDao.find(employeeId);
+        MaterialRequest materialRequest = materialRequestDao.find(materialRequestId);
+
+        logTransaction(ActionEnum.CLOSE, employee, materialRequest);
+    }
+
+    public void reopenMaterialRequest(int employeeId, int materialRequestId){
+        Employee employee = employeeDao.find(employeeId);
+        MaterialRequest materialRequest = materialRequestDao.find(materialRequestId);
+
+        logTransaction(ActionEnum.REOPEN, employee, materialRequest);
+    }
+
     public void declineMaterialRequest(int employeeId, int materialRequestId, String remark){
         Employee employee=employeeDao.find(employeeId);
         MaterialRequest materialRequest= materialRequestDao.find(materialRequestId);
@@ -113,7 +127,7 @@ public class MaterialRequestService {
             projects= employee.getPeProjects();
 
         for(int i=0;i<projects.size();++i){
-            if(!projects.get(i).isValid()){
+            if(!projects.get(i).getIsValid()){
                 projects.remove(projects.get(i));
                 --i;
             }

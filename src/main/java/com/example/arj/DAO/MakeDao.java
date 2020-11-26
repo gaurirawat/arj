@@ -40,13 +40,13 @@ public class MakeDao implements Dao<Make> {
 
     public void delete(Make makeD) {
         Make make= makeRepository.getOne(makeD.getId());
-        make.setValid(false);
+        make.setIsValid(false);
         makeRepository.save(make);
     }
 
     public void delete(Integer id) {
         Make make= makeRepository.getOne(id);
-        make.setValid(false);
+        make.setIsValid(false);
         makeRepository.save(make);
     }
 }

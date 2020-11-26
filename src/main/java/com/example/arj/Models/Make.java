@@ -50,13 +50,17 @@ public class Make {
         this.value = value;
     }
 
-    public boolean isValid() {
-        return isValid;
-    }
+//    public boolean isValid() {
+//        return isValid;
+//    }
+//
+//    public void setValid(boolean valid) {
+//        isValid = valid;
+//    }
+    //to deserialize ml while receiving from front, not deleting above as not sure about dependencies
+    public boolean getIsValid(){ return isValid;}
 
-    public void setValid(boolean valid) {
-        isValid = valid;
-    }
+    public void setIsValid(boolean isValid){this.isValid = isValid;}
 
     public Make() {
     }
